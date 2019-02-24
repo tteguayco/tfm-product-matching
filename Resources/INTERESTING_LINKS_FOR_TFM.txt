@@ -1,0 +1,7 @@
+INTERESTING LINKS FOR TFM
+=========================
+
+Attribute extraction from product titles
+--------------------------------------
+https://stackoverflow.com/questions/18496925/how-to-parse-product-titles-unstructured-into-structured-data
+https://blog.sicara.com/train-ner-model-with-nltk-stanford-tagger-english-french-german-6d90573a9486
