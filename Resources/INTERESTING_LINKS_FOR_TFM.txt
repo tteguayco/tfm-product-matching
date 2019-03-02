@@ -5,3 +5,26 @@ Attribute extraction from product titles
 --------------------------------------
 https://stackoverflow.com/questions/18496925/how-to-parse-product-titles-unstructured-into-structured-data
 https://blog.sicara.com/train-ner-model-with-nltk-stanford-tagger-english-french-german-6d90573a9486
+
+
+
+API de uso gratuito (aparentemente)
+-----------------------------------
+https://www.semantics3.com/start
+
+ML model persistance
+--------------------
+https://scikit-learn.org/stable/modules/model_persistence.html
+
+State of the art
+================	
+https://itelligent.es/es/product-matching/
+https://www.semantics3.com/blog/product-matching-you-ve-not-heard-of-it-but-its-powering-your-price-comparison-engine-5a940b1a4a52/
+
+
+Köpcke, H., Thor, A., Thomas, S., Rahm, E. Tailoring entity resolution for matching product offers.(2012) ACM International Conference Proceeding Series.
+
+Kannan, A., Givoni, I.E., Agrawal, R., Fuxman, A. Matching unstructured product offers to structured product specifications. (2011) Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.
+
+String similarity
+Thor, A. Toward an adaptive string similarity measure for matching product offers. (2010) INFORMATIK 2010 
