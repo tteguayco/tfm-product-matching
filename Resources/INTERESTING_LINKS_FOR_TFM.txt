@@ -28,3 +28,8 @@ Kannan, A., Givoni, I.E., Agrawal, R., Fuxman, A. Matching unstructured product 
 
 String similarity
 Thor, A. Toward an adaptive string similarity measure for matching product offers. (2010) INFORMATIK 2010 
+
+
+Conditional Random Fields explanation
+=====================================
+http://blog.echen.me/2012/01/03/introduction-to-conditional-random-fields/
