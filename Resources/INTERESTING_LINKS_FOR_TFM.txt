@@ -33,3 +33,8 @@ Thor, A. Toward an adaptive string similarity measure for matching product offer
 Conditional Random Fields explanation
 =====================================
 http://blog.echen.me/2012/01/03/introduction-to-conditional-random-fields/
+
+Practical attribute extraction
+==============================
+http://www.stokastik.in/attribute-extraction-from-e-commerce-product-description/
+http://www.stokastik.in/bilstm-crf-sequence-tagging-for-e-commerce-attribute-extraction/

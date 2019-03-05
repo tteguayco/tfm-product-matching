@@ -3,11 +3,12 @@ Info to extract from product titles or descriptions
 
 General:
 * Brand
+* Name of product. E.g. "iPhone"
 * Model or manufacturer code
 * Color
 
 Product-specific:
-	Mobile phones and PCs
+	Mobile phones, tablets and laptops
 		* Memory capacity (inner memory) (GB)
 		* Operating System
 		* RAM memory (GB)
