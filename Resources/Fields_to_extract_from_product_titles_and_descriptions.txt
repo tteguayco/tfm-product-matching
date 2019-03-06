@@ -18,3 +18,13 @@ Product-specific:
 
 	Television:
 		* 
+
+Topos de productos crawleados por Prodanet
+==========================================
+* Móviles
+* Tablets
+* Laptops
+* Juguetes
+* Lovetoys
+* Electrodomesticos
+* 
