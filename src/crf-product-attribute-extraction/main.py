@@ -1,13 +1,15 @@
 import pycrfsuite
 
+PRODUCT_DATA_PATH = "../../RawData/DataFinal/SmartphonesProductDataFinal.csv"
+
 training_set = [
-    (['Apple', 'iPhone', '4', '64', 'GB', '-', 'Gold'], ['BRAND', 'NAME', 'EDITION', 'MEM', 'MEM-UNIT', 'I', 'COLOR'])
+    (['Apple', 'iPhone', '4', '64', 'GB', '-', 'Gold'], ['B-BRAND', 'I-BRAND', 'EDITION', 'MEM', 'MEM-UNIT', 'I', 'COLOR'])
 ]
 
 trainer = pycrfsuite.Trainer(verbose=True)
 
-for entity_pair in training_set:
-    trainer.append(entity_pair[0], entity_pair[1])
+for seq in training_set:
+    trainer.append(seq[0], seq[1])
 
 trainer.set_params({
     'c1': 0.1,
