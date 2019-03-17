@@ -11,13 +11,20 @@ class BIOTagger:
         self.colors_list = []
 
         self.smartphones_dataset = pd.read_csv(BIOTagger.SMARTPHONES_PRODUCT_DATA_FINAL_PATH)
-        self.brands_list = self.smartphones_dataset['BrandName'].tolist()
-        self.colors_list = self.smartphones_dataset['Color'].tolist()
+        self.products_titles = self.smartphones_dataset['Name'].astype(str).values.tolist()
+        self.brands_list = self.smartphones_dataset['BrandName'].astype(str).values.tolist()
+        self.colors_list = self.smartphones_dataset['Color'].astype(str).values.tolist()
 
+        self.preprocess_titles()
         self.preprocess_brands()
         self.preprocess_colors()
 
+    def preprocess_titles(self):
+        # TODO remove punctuation
+        self.products_titles = [title.lower() for title in self.products_titles]
+
     def preprocess_brands(self):
+        self.brands_list = [brand.lower() for brand in self.brands_list]
         self.brands_list = [brand for brand in self.brands_list if str(brand) != 'nan']
         self.brands_list = list(set(self.brands_list))
 
@@ -28,8 +35,23 @@ class BIOTagger:
         self.colors_list = list(set(self.colors_list))
 
     def tag_titles(self):
-        pass
+        for title in self.products_titles:
+            encoded_title = {}
+            splitted_title = title.split()
 
+            for word in splitted_title:
+                # Tag brands
+
+                # Tag colors
+                if word in self.colors_list:
+                    encoded_title[word] = 'B-COLOR'
+
+                else:
+                    encoded_title[word] = 'O'
+
+            self.encoded_titles.append(encoded_title)
 
 bio_tagger = BIOTagger()
-print(bio_tagger.colors_list)
+bio_tagger.tag_titles()
+for encoded_title in bio_tagger.encoded_titles:
+    print(encoded_title)
