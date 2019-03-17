@@ -36,22 +36,43 @@ class BIOTagger:
 
     def tag_titles(self):
         for title in self.products_titles:
-            encoded_title = {}
+            encoded_title = []
             splitted_title = title.split()
 
-            for word in splitted_title:
-                # Tag brands
+            # Initialize labels
+            for i, word in enumerate(splitted_title):
+                encoded_title.append((word, None))
 
-                # Tag colors
-                if word in self.colors_list:
-                    encoded_title[word] = 'B-COLOR'
+            # Tag brands
+            for i, brand in enumerate(self.brands_list):
+                if brand in title:
+                    splitted_brand = brand.split()
+                    if len(splitted_brand) == 0:
+                        for j, word in enumerate(splitted_title):
+                            if splitted_brand[0] == encoded_title[j]:
+                                encoded_title[j] = (word, 'B-BRAND')
+                    else:
+                        for j, word in enumerate(splitted_title):
+                            for k, brand_part in enumerate(splitted_brand):
+                                if word == brand_part:
+                                    if k == 0:
+                                        encoded_title[j] = (word, 'B-BRAND')
+                                    else:
+                                        print(brand)
+                                        encoded_title[j] = (word, 'I-BRAND')
 
-                else:
-                    encoded_title[word] = 'O'
+            # Tag colors
+            #for color in self.colors_list:
+
 
             self.encoded_titles.append(encoded_title)
 
+
 bio_tagger = BIOTagger()
 bio_tagger.tag_titles()
-for encoded_title in bio_tagger.encoded_titles:
+for i, encoded_title in enumerate(bio_tagger.encoded_titles):
+    if i == 100:
+        break
     print(encoded_title)
+
+print(len(bio_tagger.encoded_titles))
