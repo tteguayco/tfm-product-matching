@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9ce097be-267c-4c55-b31a-ec2364e44331" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/BIOTagger.py" beforeDir="false" afterPath="$PROJECT_DIR$/BIOTagger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,20 +13,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="77" selection-start-line="2" selection-end-line="2" selection-end-column="77" />
+              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BIOTagger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="64" column="43" lean-forward="true" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
+            <state relative-caret-position="273">
+              <caret line="80" column="31" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -45,8 +49,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/BIOTagger.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -92,7 +96,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.BIOTagger">
+  <component name="RunManager" selected="Python.main">
     <configuration name="BIOTagger" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ProductAttributeExtraction" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -137,8 +141,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.BIOTagger" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.BIOTagger" />
       </list>
     </recent_temporary>
   </component>
@@ -183,17 +187,20 @@
     <entry file="file://$PROJECT_DIR$/crf.model">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/BIOTagger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="77" selection-start-line="2" selection-end-line="2" selection-end-column="77" />
+        <state relative-caret-position="273">
+          <caret line="80" column="31" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BIOTagger.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="64" column="43" lean-forward="true" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
+        <state relative-caret-position="34">
+          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,15 +1,17 @@
 import pycrfsuite
 
-PRODUCT_DATA_PATH = "../../RawData/DataFinal/SmartphonesProductDataFinal.csv"
+import BIOTagger as biot
 
-training_set = [
-    (['Apple', 'iPhone', '4', '64', 'GB', '-', 'Gold'], ['B-BRAND', 'I-BRAND', 'EDITION', 'MEM', 'MEM-UNIT', 'I', 'COLOR'])
-]
+bio_tagger = biot.BIOTagger()
+bio_tagger.tag_titles()
+
+train_features = bio_tagger.get_titles_words_sequence()
+train_labels = bio_tagger.get_titles_words_labels()
 
 trainer = pycrfsuite.Trainer(verbose=True)
 
-for seq in training_set:
-    trainer.append(seq[0], seq[1])
+for xseq, yseq in zip(train_features, train_labels):
+    trainer.append(xseq, yseq)
 
 trainer.set_params({
     'c1': 0.1,
@@ -23,6 +25,6 @@ trainer.train('crf.model')
 tagger = pycrfsuite.Tagger()
 tagger.open('crf.model')
 
-y_pred = tagger.tag(['iPhone', '5'])
+y_pred = tagger.tag(['Nokia', '3', 'Version', '2018', 'Dual-SIM', 'silver'])
 
 print(y_pred)

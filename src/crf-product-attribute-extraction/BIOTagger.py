@@ -32,6 +32,7 @@ class BIOTagger:
         self.colors_list = [color for color in self.colors_list if str(color) != 'nan']
         self.colors_list = [color.lower() for color in self.colors_list]
         self.colors_list = [color.replace('farbe', '') for color in self.colors_list]
+        self.colors_list = [color.strip() for color in self.colors_list]
         self.colors_list = list(set(self.colors_list))
 
     def tag_titles(self):
@@ -41,7 +42,7 @@ class BIOTagger:
 
             # Initialize labels
             for i, word in enumerate(splitted_title):
-                encoded_title.append((word, None))
+                encoded_title.append((word, 'O'))
 
             # Tag brands
             for i, brand in enumerate(self.brands_list):
@@ -58,21 +59,37 @@ class BIOTagger:
                                     if k == 0:
                                         encoded_title[j] = (word, 'B-BRAND')
                                     else:
-                                        print(brand)
                                         encoded_title[j] = (word, 'I-BRAND')
 
             # Tag colors
-            #for color in self.colors_list:
-
+            for i, word in enumerate(splitted_title):
+                for j, color in enumerate(self.colors_list):
+                    if color in title:
+                        if color == word:
+                            encoded_title[i] = (word, 'B-COLOR')
 
             self.encoded_titles.append(encoded_title)
 
+    def get_titles_words_sequence(self):
+        sequences = []
+        for labeled_words in self.encoded_titles:
+            seq = [pair[0] for pair in labeled_words]
+            sequences.append(seq)
 
-bio_tagger = BIOTagger()
-bio_tagger.tag_titles()
-for i, encoded_title in enumerate(bio_tagger.encoded_titles):
-    if i == 100:
-        break
-    print(encoded_title)
+        return sequences
 
-print(len(bio_tagger.encoded_titles))
+    def get_titles_words_labels(self):
+        labels = []
+        for labeled_words in self.encoded_titles:
+            seq = [pair[1] for pair in labeled_words]
+            labels.append(seq)
+
+        return labels
+
+
+if __name__ == "__main__":
+    bio_tagger = BIOTagger()
+    bio_tagger.tag_titles()
+
+    print(bio_tagger.get_titles_words_sequence()[0])
+    print(bio_tagger.get_titles_words_labels()[0])
