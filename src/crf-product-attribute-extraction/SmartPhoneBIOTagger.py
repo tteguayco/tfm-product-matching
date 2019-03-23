@@ -13,7 +13,7 @@ class SmartPhoneBIOTagger:
 
         self.brands_list = []
         self.colors_list = []
-        self.models_list = []
+        self.models_by_brand = []
 
         self.smartphones_final_dataset = pd.read_csv(SmartPhoneBIOTagger.SMARTPHONES_FINAL_DATASET_PATH, nrows=1000)
         self.smartphones_gsmarena_dataset = pd.read_csv(SmartPhoneBIOTagger.SMARTPHONES_GSMARENA_DATASET_PATH)
@@ -22,12 +22,31 @@ class SmartPhoneBIOTagger:
         self.brands_list = self.smartphones_final_dataset['BrandName'].astype(str).values.tolist()
         self.colors_list = self.smartphones_final_dataset['Color'].astype(str).values.tolist()
 
-        self.models_list = self.smartphones_gsmarena_dataset['model'].astype(str).values.tolist()
+        self.models_by_brand = self.get_models_by_brand(self.smartphones_gsmarena_dataset)
+            #self.smartphones_gsmarena_dataset['model'].astype(str).values.tolist()
 
         self.preprocess_titles()
         self.preprocess_brands()
         self.preprocess_colors()
         self.preprocess_models()
+
+    def get_models_by_brand(self, df):
+        '''
+        Collects the models names for the known brands
+
+        :param df: dataframe containing brands and models
+        :return: a dictionary whose keys are brand names and the values are the known models for those brands
+        '''
+
+        models_by_brand = {}
+
+        for brand in self.brands_list:
+            brand = brand.lower()
+            current_brand_models_list = df[df['brand'].str.lower() == brand]['model'].astype(str).values.tolist()
+            current_brand_models_list = [x.lower() for x in current_brand_models_list]
+            models_by_brand[brand] = current_brand_models_list
+
+        return models_by_brand
 
     def preprocess_titles(self):
         # TODO remove punctuation
@@ -46,10 +65,11 @@ class SmartPhoneBIOTagger:
         self.colors_list = list(set(self.colors_list))
 
     def preprocess_models(self):
-        self.models_list = [model.lower() for model in self.models_list]
+        #self.models_list = [model.lower() for model in self.models_list]
 
         # Descending order based on the number of words in model
-        self.models_list.sort(key=lambda model: len(model.split()), reverse=True)
+        #self.models_list.sort(key=lambda model: len(model.split()), reverse=True)
+        pass
 
     def tag_titles(self):
         for title in self.products_titles:
@@ -64,59 +84,66 @@ class SmartPhoneBIOTagger:
                 title_labels.append('O')
 
             # Tag brands
-            # for i, brand in enumerate(self.brands_list):
-            #     if brand in title:
-            #         splitted_brand = brand.split()
-            #         if len(splitted_brand) == 0:
-            #             for j, word in enumerate(splitted_title):
-            #                 if splitted_brand[0] == encoded_title[j]:
-            #                     encoded_title[j] = (word, 'B-BRAND')
-            #         else:
-            #             for j, word in enumerate(splitted_title):
-            #                 for k, brand_part in enumerate(splitted_brand):
-            #                     if word == brand_part:
-            #                         if k == 0:
-            #                             encoded_title[j] = (word, 'B-BRAND')
-            #                         else:
-            #                             encoded_title[j] = (word, 'I-BRAND')
+            for i, brand in enumerate(self.brands_list):
+                if brand in title:
+                    splitted_brand = brand.split()
+                    if len(splitted_brand) == 0:
+                        for j, word in enumerate(splitted_title):
+                            if splitted_brand[0] == title_features[j]:
+                                title_features[j] = word
+                                title_labels[j] = 'B-BRAND'
+                    else:
+                        for j, word in enumerate(splitted_title):
+                            for k, brand_part in enumerate(splitted_brand):
+                                if word == brand_part:
+                                    if k == 0:
+                                        title_features[j] = word
+                                        title_labels[j] = 'B-BRAND'
+                                    else:
+                                        title_features[j] = word
+                                        title_labels[j] = 'I-BRAND'
 
             # Tag colors
-            # for i, word_title in enumerate(splitted_title):
-            #     for j, color in enumerate(self.colors_list):
-            #         if color in title:
-            #             if color == word_title:
-            #                 encoded_title[i] = (word_title, 'B-COLOR')
+            for i, word_title in enumerate(splitted_title):
+                for j, color in enumerate(self.colors_list):
+                    if color in title:
+                        if color == word_title:
+                            title_features[i] = word_title
+                            title_labels[i] = 'B-COLOR'
 
             # Tag models
-            for model in self.models_list:
-
-                # If the whole model name is contained in the product title
-                if set(model.split()) <= set(title.split()):
-                    splitted_model = model.split()
-                    for i, model_part in enumerate(splitted_model):
-                        tag2apply = 'B-MODEL' if i == 0 else 'I-MODEL'
-                        for j, word_title in enumerate(splitted_title):
-                            if model_part == word_title:
-                                title_features[j] = word_title
-                                title_labels[j] = tag2apply
-
-                    # Only one model allowed for a single title
-                    break
+            # for model in self.models_list:
+            #
+            #     # If the whole model name is contained in the product title
+            #     if set(model.split()) <= set(title.split()):
+            #         splitted_model = model.split()
+            #         for i, model_part in enumerate(splitted_model):
+            #             tag2apply = 'B-MODEL' if i == 0 else 'I-MODEL'
+            #             for j, word_title in enumerate(splitted_title):
+            #                 if model_part == word_title:
+            #                     title_features[j] = word_title
+            #                     title_labels[j] = tag2apply
+            #
+            #         # Only one model allowed for a single title
+            #         break
 
             self.titles_features.append(title_features)
             self.titles_labels.append(title_labels)
 
             print(self.titles_features[-1])
             print(self.titles_labels[-1])
+            print()
 
 if __name__ == "__main__":
     bio_tagger = SmartPhoneBIOTagger()
 
+    print(bio_tagger.models_by_brand);
+
     start_time = time.time()
-    bio_tagger.tag_titles()
+    #bio_tagger.tag_titles()
     elapsed_time = time.time() - start_time
 
     print("Elapsed time of BIO Encoding: {}".format(elapsed_time))
 
-    print(bio_tagger.titles_features[0])
-    print(bio_tagger.titles_labels[0])
+    #print(bio_tagger.titles_features[0])
+    #print(bio_tagger.titles_labels[0])
