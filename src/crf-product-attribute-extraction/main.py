@@ -1,8 +1,8 @@
 import pycrfsuite
 
-import BIOTagger as biot
+import SmartPhoneBIOTagger as biot
 
-bio_tagger = biot.BIOTagger()
+bio_tagger = biot.SmartPhoneBIOTagger()
 bio_tagger.tag_titles()
 
 train_features = bio_tagger.get_titles_words_sequence()
