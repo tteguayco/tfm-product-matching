@@ -1,17 +1,50 @@
 import pycrfsuite
+import re
 
-import SmartPhoneBIOTagger as biot
+BIO_ENCODED_PRODUCT_TITLES_FILE = "./out/encoded_titles.txt"
 
-bio_tagger = biot.SmartPhoneBIOTagger()
-bio_tagger.tag_titles()
 
-train_features = bio_tagger.get_titles_words_sequence()
-train_labels = bio_tagger.get_titles_words_labels()
+def get_training_set_from_file(file_path):
+    training_set = []
+
+    with(open(file_path, 'r')) as f:
+        for line in f:
+            product_title = []
+            features_list = []
+            labels_list = []
+
+            splitted_line = line.split(';')
+            features_line = splitted_line[0]
+            labels_line = splitted_line[1]
+
+            pattern = re.compile(r'\'([\w-]+)\'')
+
+            for feature in re.findall(pattern, features_line):
+                features_list.append(feature)
+
+            for label in re.findall(pattern, labels_line):
+                labels_list.append(label)
+
+            product_title.append(features_list)
+            product_title.append(labels_list)
+            training_set.append(product_title)
+
+    return training_set
+
+
+training_set = get_training_set_from_file(BIO_ENCODED_PRODUCT_TITLES_FILE)
+
+print(training_set)
 
 trainer = pycrfsuite.Trainer(verbose=True)
 
-for xseq, yseq in zip(train_features, train_labels):
-    trainer.append(xseq, yseq)
+for encoded_title in training_set:
+    print(encoded_title[0])
+    print(encoded_title[1])
+    trainer.append(encoded_title[0], encoded_title[1])
+
+#for xseq, yseq in zip(train_features, train_labels):
+#    trainer.append(xseq, yseq)
 
 trainer.set_params({
     'c1': 0.1,

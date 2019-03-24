@@ -119,6 +119,9 @@ class SmartPhoneBIOTagger:
                                         title_features[j] = word
                                         title_labels[j] = 'I-BRAND'
 
+                    # Two different brands cannot be identified in the same title
+                    break
+
             # Tag colors
             for i, word_title in enumerate(splitted_title):
                 for j, color in enumerate(self.product_colors):
@@ -144,6 +147,9 @@ class SmartPhoneBIOTagger:
                                     title_features[j] = word_title
                                     title_labels[j] = tag2apply
 
+                        # Two different models cannot be identified in the same title
+                        break
+
             self.title_features.append(title_features)
             self.title_labels.append(title_labels)
 
@@ -153,7 +159,7 @@ class SmartPhoneBIOTagger:
             os.makedirs(os.path.dirname(file_path), exist_ok=True)
             with open(file_path, 'w+') as f:
                     for i in range(0, len(self.title_features)):
-                        f.write(str(self.title_features[i]) + "\n")
+                        f.write(str(self.title_features[i]) + ";")
                         f.write(str(self.title_labels[i]) + "\n")
         else:
             raise ValueError("Features and labels lists do not have the same length")
@@ -178,7 +184,7 @@ if __name__ == "__main__":
     ENCODED_TITLES_OUTPUT_FILE_PATH = "./out/encoded_titles.txt"
 
     # Get data
-    final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH, nrows=100)
+    final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH, nrows=5000)
     structured_product_data = pd.read_csv(SMARTPHONES_GSMARENA_DATASET_PATH)
 
     product_titles = final_product_data['Name'].astype(str).values.tolist()
@@ -195,9 +201,9 @@ if __name__ == "__main__":
 
     start_time = time.time()
     bio_tagger.tag_titles()
-    elapsed_time = time.time() - start_time
+    elapsed_time = round(time.time() - start_time, 3)
 
-    print("BIO encoded finished. Elapsed time: {}".format(elapsed_time))
+    print("BIO encoded finished. Elapsed time (s): {}".format(elapsed_time))
     print("Exporting results to {}".format(ENCODED_TITLES_OUTPUT_FILE_PATH))
 
     bio_tagger.export_encoding_to_file(ENCODED_TITLES_OUTPUT_FILE_PATH)
