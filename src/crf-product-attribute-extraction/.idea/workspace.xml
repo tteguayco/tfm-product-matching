@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SmartPhoneBIOTagger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="166" column="66" lean-forward="true" selection-start-line="166" selection-start-column="66" selection-end-line="166" selection-end-column="66" />
+            <state relative-caret-position="241">
+              <caret line="140" column="73" lean-forward="true" selection-start-line="140" selection-start-column="73" selection-end-line="140" selection-end-column="73" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -164,7 +164,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21083939" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -172,7 +171,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.23512748" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.33427763" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -184,6 +183,22 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/SmartPhoneBIOTagger.py</url>
+          <line>137</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/SmartPhoneBIOTagger.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/main" />
@@ -209,8 +224,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SmartPhoneBIOTagger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="166" column="66" lean-forward="true" selection-start-line="166" selection-start-column="66" selection-end-line="166" selection-end-column="66" />
+        <state relative-caret-position="241">
+          <caret line="140" column="73" lean-forward="true" selection-start-line="140" selection-start-column="73" selection-end-line="140" selection-end-column="73" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

@@ -8,8 +8,8 @@ class SmartPhoneBIOTagger:
     def __init__(self, titles, colors, brands, models_by_brand):
 
         # Structures to BIO encode product titles
-        self.titles_features = []
-        self.titles_labels = []
+        self.title_features = []
+        self.title_labels = []
 
         # Store data
         self.product_titles = titles
@@ -59,26 +59,49 @@ class SmartPhoneBIOTagger:
         # Descending order the models for a given brand based on the number of words the model has
         # This will avoid to wrongly match the model as 'Liquid Z6' when it is 'Liquid Z6 Plus',
         # as the models list is inspected sequentially (longer models are matched first)
-        for brand, models_list in self.product_models_by_brand.iteritems():
-            ordered_models_list = models_list.sort(key=lambda model: len(model.split()), reverse=True)
-            self.product_models_by_brand[brand] = ordered_models_list
+        for brand, models_list in self.product_models_by_brand.items():
+            models_list.sort(key=lambda model: len(model.split()), reverse=True)
+
+    def title_contains_model(self, title, model):
+
+        if set(model.split()) <= set(title.split()):
+            indexes_list = []
+            splitted_title = title.split()
+            splitted_model = model.split()
+
+            for word_model in splitted_model:
+                indexes_list.append(splitted_title.index(word_model))
+
+            # Check if all the collected indexes are consecutive
+            if (len(splitted_model) == len(indexes_list) and
+                len(set(indexes_list)) == len(indexes_list) and
+                    sorted(indexes_list) == indexes_list):
+                first_index = indexes_list[0]
+                last_index = indexes_list[-1]
+                if (last_index - first_index) == len(indexes_list) - 1:
+                    return True
+
+        return False
 
     def tag_titles(self):
-        for title in self.products_titles:
+
+        for title in self.product_titles:
             title_features = []
             title_labels = []
+            found_brand = ''
 
             splitted_title = title.split()
 
             # Initialize features and labels
-            for i, word in enumerate(splitted_title):
+            for word in splitted_title:
                 title_features.append(word)
                 title_labels.append('O')
 
             # Tag brands
-            for i, brand in enumerate(self.brands_list):
+            for i, brand in enumerate(self.product_brands):
                 if brand in title:
                     splitted_brand = brand.split()
+                    found_brand = brand
                     if len(splitted_brand) == 0:
                         for j, word in enumerate(splitted_title):
                             if splitted_brand[0] == title_features[j]:
@@ -97,33 +120,34 @@ class SmartPhoneBIOTagger:
 
             # Tag colors
             for i, word_title in enumerate(splitted_title):
-                for j, color in enumerate(self.colors_list):
+                for j, color in enumerate(self.product_colors):
                     if color in title:
                         if color == word_title:
                             title_features[i] = word_title
                             title_labels[i] = 'B-COLOR'
 
             # Tag models
-            # for model in self.models_list:
-            #
-            #     # If the whole model name is contained in the product title
-            #     if set(model.split()) <= set(title.split()):
-            #         splitted_model = model.split()
-            #         for i, model_part in enumerate(splitted_model):
-            #             tag2apply = 'B-MODEL' if i == 0 else 'I-MODEL'
-            #             for j, word_title in enumerate(splitted_title):
-            #                 if model_part == word_title:
-            #                     title_features[j] = word_title
-            #                     title_labels[j] = tag2apply
-            #
-            #         # Only one model allowed for a single title
-            #         break
+            if len(found_brand) > 0:
 
-            self.titles_features.append(title_features)
-            self.titles_labels.append(title_labels)
+                models_for_found_brand = []
+                if found_brand in self.product_models_by_brand:
+                    models_for_found_brand = self.product_models_by_brand[found_brand]
 
-            print(self.titles_features[-1])
-            print(self.titles_labels[-1])
+                for model in models_for_found_brand:
+                    if self.title_contains_model(title, model):
+                        splitted_model = model.split()
+                        for i, word_model in enumerate(splitted_model):
+                            tag2apply = 'B-MODEL' if i == 0 else 'I-MODEL'
+                            for j, word_title in enumerate(splitted_title):
+                                if word_model == word_title:
+                                    title_features[j] = word_title
+                                    title_labels[j] = tag2apply
+
+            self.title_features.append(title_features)
+            self.title_labels.append(title_labels)
+
+            print(self.title_features[-1])
+            print(self.title_labels[-1])
             print()
 
 
@@ -131,10 +155,9 @@ def get_models_by_brand(df, brands):
     models_by_brand = {}
 
     for brand in brands:
-        brand = brand.lower()
-        current_brand_models_list = df[df['brand'].str.lower() == brand]['model'].astype(str).values.tolist()
+        current_brand_models_list = df[df['brand'].str.lower() == brand.lower()]['model'].astype(str).values.tolist()
         current_brand_models_list = [x.lower() for x in current_brand_models_list]
-        models_by_brand[brand] = current_brand_models_list
+        models_by_brand[brand.lower()] = current_brand_models_list
 
     return models_by_brand
 
@@ -145,7 +168,7 @@ if __name__ == "__main__":
     SMARTPHONES_GSMARENA_DATASET_PATH = "../../RawData/GSMArenaPhoneDataset/phone_dataset.csv"
 
     # Get data
-    final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH, nrows=1000)
+    final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH, nrows=100)
     structured_product_data = pd.read_csv(SMARTPHONES_GSMARENA_DATASET_PATH)
 
     product_titles = final_product_data['Name'].astype(str).values.tolist()
@@ -157,11 +180,15 @@ if __name__ == "__main__":
     # Start BIO encoding
     bio_tagger = SmartPhoneBIOTagger(product_titles, product_colors, product_brands, product_models_by_brand)
 
-    print(bio_tagger.product_colors)
-    print(bio_tagger.product_models_by_brand)
+    print("BIOTagger object created.")
+    print("Starting BIO encoding...")
 
     start_time = time.time()
-    # bio_tagger.tag_titles()
+    bio_tagger.tag_titles()
     elapsed_time = time.time() - start_time
 
-    print("Elapsed time of BIO Encoding: {}".format(elapsed_time))
+    print("BIO encoded finished. Elapsed time: {}".format(elapsed_time))
+
+
+    print(bio_tagger.title_contains_model("ksd asnd liquid z6 Plus akjdasad", "liquid z6 plus"))
+    print(bio_tagger.product_models_by_brand)
