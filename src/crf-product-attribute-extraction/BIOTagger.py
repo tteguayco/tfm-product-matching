@@ -6,7 +6,7 @@ import os
 
 class SmartPhoneBIOTagger:
 
-    def __init__(self, titles, colors, brands, models_by_brand):
+    def __init__(self, titles, colors, brands, models, models_by_brand):
 
         # Structures to BIO encode product titles
         self.title_features = []
@@ -16,6 +16,7 @@ class SmartPhoneBIOTagger:
         self.product_titles = titles
         self.product_colors = colors
         self.product_brands = brands
+        self.models = models
         self.product_models_by_brand = models_by_brand
 
         # Clean textual data
@@ -23,6 +24,7 @@ class SmartPhoneBIOTagger:
         self.preprocess_brands()
         self.preprocess_colors()
         self.preprocess_models()
+        self.preprocess_models_by_brand()
 
     def common_preprocess(self, attr_list):
         # Lowercase words
@@ -56,6 +58,9 @@ class SmartPhoneBIOTagger:
         self.product_colors = [color.replace('farbe', '') for color in self.product_colors]
 
     def preprocess_models(self):
+        self.models.sort(key=lambda model: len(model.split()), reverse=True)
+
+    def preprocess_models_by_brand(self):
 
         # Descending order the models for a given brand based on the number of words the model has
         # This will avoid to wrongly match the model as 'Liquid Z6' when it is 'Liquid Z6 Plus',
@@ -131,24 +136,26 @@ class SmartPhoneBIOTagger:
                             title_labels[i] = 'B-COLOR'
 
             # Tag models
+            models_set = []
             if len(found_brand) > 0:
-
-                models_for_found_brand = []
                 if found_brand in self.product_models_by_brand:
-                    models_for_found_brand = self.product_models_by_brand[found_brand]
+                    models_set = self.product_models_by_brand[found_brand]
 
-                for model in models_for_found_brand:
-                    if self.title_contains_model(title, model):
-                        splitted_model = model.split()
-                        for i, word_model in enumerate(splitted_model):
-                            tag2apply = 'B-MODEL' if i == 0 else 'I-MODEL'
-                            for j, word_title in enumerate(splitted_title):
-                                if word_model == word_title:
-                                    title_features[j] = word_title
-                                    title_labels[j] = tag2apply
+            if len(models_set) == 0:
+                models_set = self.models
 
-                        # Two different models cannot be identified in the same title
-                        break
+            for model in models_set:
+                if self.title_contains_model(title, model):
+                    splitted_model = model.split()
+                    for i, word_model in enumerate(splitted_model):
+                        tag2apply = 'B-MODEL' if i == 0 else 'I-MODEL'
+                        for j, word_title in enumerate(splitted_title):
+                            if word_model == word_title:
+                                title_features[j] = word_title
+                                title_labels[j] = tag2apply
+
+                    # Two different models cannot be identified in the same title
+                    break
 
             self.title_features.append(title_features)
             self.title_labels.append(title_labels)
@@ -184,17 +191,19 @@ if __name__ == "__main__":
     ENCODED_TITLES_OUTPUT_FILE_PATH = "./out/encoded_titles.txt"
 
     # Get data
-    final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH, nrows=5000)
+    final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH, nrows=50000, low_memory=False)
     structured_product_data = pd.read_csv(SMARTPHONES_GSMARENA_DATASET_PATH)
 
     product_titles = final_product_data['Name'].astype(str).values.tolist()
     product_colors = final_product_data['Color'].astype(str).values.tolist()
 
     product_brands = structured_product_data['brand'].astype(str).values.tolist()
+    product_models = structured_product_data['model'].astype(str).values.tolist()
     product_models_by_brand = get_models_by_brand(structured_product_data, product_brands)
 
     # Start BIO encoding
-    bio_tagger = SmartPhoneBIOTagger(product_titles, product_colors, product_brands, product_models_by_brand)
+    bio_tagger = SmartPhoneBIOTagger(product_titles,
+                                     product_colors, product_brands, product_models, product_models_by_brand)
 
     print("BIOTagger object created.")
     print("Starting BIO encoding...")

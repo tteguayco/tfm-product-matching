@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9ce097be-267c-4c55-b31a-ec2364e44331" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Memoria/~$emoria.doc" beforeDir="false" afterPath="$PROJECT_DIR$/../../Memoria/~$emoria.doc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Memoria/~WRL0001.tmp" beforeDir="false" afterPath="$PROJECT_DIR$/../../Memoria/~WRL0001.tmp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SmartPhoneBIOTagger.py" beforeDir="false" afterPath="$PROJECT_DIR$/BIOTagger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/CRFModelTrainer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BIOTagger.py" beforeDir="false" afterPath="$PROJECT_DIR$/BIOTagger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StructuredDatasetBuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/StructuredDatasetBuilder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/encoded_titles.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/encoded_titles.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CRFModelTrainer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-378">
-              <caret lean-forward="true" selection-end-column="17" />
+            <state>
+              <caret selection-end-line="1" selection-end-column="9" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -26,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StructuredDatasetBuilder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="51" column="114" selection-start-line="51" selection-start-column="114" selection-end-line="51" selection-end-column="114" />
+            <state relative-caret-position="315">
+              <caret line="43" column="33" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -38,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BIOTagger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="158" column="66" selection-start-line="158" selection-start-column="12" selection-end-line="158" selection-end-column="66" />
+            <state relative-caret-position="341">
+              <caret line="159" column="54" lean-forward="true" selection-start-line="159" selection-start-column="54" selection-end-line="159" selection-end-column="54" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -65,12 +68,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/BIOTagger.py" />
         <option value="$PROJECT_DIR$/SmartPhoneBIOTagger.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/out/StructuredDatasetBuilder.py" />
         <option value="$PROJECT_DIR$/CRFModelTrainer.py" />
         <option value="$PROJECT_DIR$/StructuredDatasetBuilder.py" />
+        <option value="$PROJECT_DIR$/BIOTagger.py" />
       </list>
     </option>
   </component>
@@ -86,7 +89,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -98,6 +100,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -116,7 +119,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.StructuredDatasetBuilder">
+  <component name="RunManager" selected="Python.BIOTagger">
     <configuration name="BIOTagger" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ProductAttributeExtraction" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -182,9 +185,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.BIOTagger" />
         <item itemvalue="Python.StructuredDatasetBuilder" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.BIOTagger" />
       </list>
     </recent_temporary>
   </component>
@@ -236,33 +239,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/out/StructuredDatasetBuilder.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/out/StructuredDatasetBuilder.py" />
     <entry file="file://$PROJECT_DIR$/CRFModelTrainer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-378">
-          <caret lean-forward="true" selection-end-column="17" />
+        <state>
+          <caret selection-end-line="1" selection-end-column="9" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BIOTagger.py">
+    <entry file="file://$PROJECT_DIR$/StructuredDatasetBuilder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="158" column="66" selection-start-line="158" selection-start-column="12" selection-end-line="158" selection-end-column="66" />
+        <state relative-caret-position="315">
+          <caret line="43" column="33" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StructuredDatasetBuilder.py">
+    <entry file="file://$PROJECT_DIR$/BIOTagger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="51" column="114" selection-start-line="51" selection-start-column="114" selection-end-line="51" selection-end-column="114" />
+        <state relative-caret-position="341">
+          <caret line="159" column="54" lean-forward="true" selection-start-line="159" selection-start-column="54" selection-end-line="159" selection-end-column="54" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

@@ -36,10 +36,12 @@ class StructuredDatasetBuilder:
             if len(splitted_title) == len(title_labels):
                 for j, label in enumerate(title_labels):
                     if '-BRAND' in label:
-                        brand += splitted_title[j]
+                        brand += splitted_title[j] + ' '
                     elif '-MODEL' in label:
-                        model += splitted_title[j]
+                        model += splitted_title[j] + ' '
 
+            brand = brand.strip()
+            model = model.strip()
             price = self.prices[i]
             matching_code = self.matching_codes[i]
 
