@@ -34,17 +34,12 @@ def get_training_set_from_file(file_path):
 
 training_set = get_training_set_from_file(BIO_ENCODED_PRODUCT_TITLES_FILE)
 
-print(training_set)
-
 trainer = pycrfsuite.Trainer(verbose=True)
 
 for encoded_title in training_set:
     print(encoded_title[0])
     print(encoded_title[1])
     trainer.append(encoded_title[0], encoded_title[1])
-
-#for xseq, yseq in zip(train_features, train_labels):
-#    trainer.append(xseq, yseq)
 
 trainer.set_params({
     'c1': 0.1,
@@ -54,10 +49,3 @@ trainer.set_params({
 })
 
 trainer.train('crf.model')
-
-tagger = pycrfsuite.Tagger()
-tagger.open('crf.model')
-
-y_pred = tagger.tag(['Nokia', '3', 'Version', '2018', 'Dual-SIM', 'silver'])
-
-print(y_pred)
