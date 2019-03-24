@@ -1,75 +1,67 @@
 import pandas as pd
 import time
+import re
 
 
 class SmartPhoneBIOTagger:
 
-    SMARTPHONES_FINAL_DATASET_PATH = "../../RawData/DataFinal/SmartphonesProductDataFinal.csv"
-    SMARTPHONES_GSMARENA_DATASET_PATH = "../../RawData/GSMArenaPhoneDataset/phone_dataset.csv"
+    def __init__(self, titles, colors, brands, models_by_brand):
 
-    def __init__(self):
+        # Structures to BIO encode product titles
         self.titles_features = []
         self.titles_labels = []
 
-        self.brands_list = []
-        self.colors_list = []
-        self.models_by_brand = []
+        # Store data
+        self.product_titles = titles
+        self.product_colors = colors
+        self.product_brands = brands
+        self.product_models_by_brand = models_by_brand
 
-        self.smartphones_final_dataset = pd.read_csv(SmartPhoneBIOTagger.SMARTPHONES_FINAL_DATASET_PATH, nrows=1000)
-        self.smartphones_gsmarena_dataset = pd.read_csv(SmartPhoneBIOTagger.SMARTPHONES_GSMARENA_DATASET_PATH)
-
-        self.products_titles = self.smartphones_final_dataset['Name'].astype(str).values.tolist()
-        self.brands_list = self.smartphones_final_dataset['BrandName'].astype(str).values.tolist()
-        self.colors_list = self.smartphones_final_dataset['Color'].astype(str).values.tolist()
-
-        self.models_by_brand = self.get_models_by_brand(self.smartphones_gsmarena_dataset)
-            #self.smartphones_gsmarena_dataset['model'].astype(str).values.tolist()
-
+        # Clean textual data
         self.preprocess_titles()
         self.preprocess_brands()
         self.preprocess_colors()
         self.preprocess_models()
 
-    def get_models_by_brand(self, df):
-        '''
-        Collects the models names for the known brands
+    def common_preprocess(self, attr_list):
+        # Lowercase words
+        attr_list = [x.lower() for x in attr_list]
 
-        :param df: dataframe containing brands and models
-        :return: a dictionary whose keys are brand names and the values are the known models for those brands
-        '''
+        # Remove punctuation
+        attr_list = [re.sub(r'[^\w\s]', '', x) for x in attr_list]
 
-        models_by_brand = {}
+        # Remove NULL values
+        attr_list = [x for x in attr_list if str(x) != 'nan']
 
-        for brand in self.brands_list:
-            brand = brand.lower()
-            current_brand_models_list = df[df['brand'].str.lower() == brand]['model'].astype(str).values.tolist()
-            current_brand_models_list = [x.lower() for x in current_brand_models_list]
-            models_by_brand[brand] = current_brand_models_list
+        # Remove duplicates
+        attr_list = list(set(attr_list))
 
-        return models_by_brand
+        # Trim surrounding spaces
+        attr_list = [x.strip() for x in attr_list]
+
+        # Remove sequential spaces
+        attr_list = [re.sub(r'\s{2,}', ' ', x) for x in attr_list]
+
+        return attr_list
 
     def preprocess_titles(self):
-        # TODO remove punctuation
-        self.products_titles = [title.lower() for title in self.products_titles]
+        self.product_titles = self.common_preprocess(self.product_titles)
 
     def preprocess_brands(self):
-        self.brands_list = [brand.lower() for brand in self.brands_list]
-        self.brands_list = [brand for brand in self.brands_list if str(brand) != 'nan']
-        self.brands_list = list(set(self.brands_list))
+        self.product_brands = self.common_preprocess(self.product_brands)
 
     def preprocess_colors(self):
-        self.colors_list = [color for color in self.colors_list if str(color) != 'nan']
-        self.colors_list = [color.lower() for color in self.colors_list]
-        self.colors_list = [color.replace('farbe', '') for color in self.colors_list]
-        self.colors_list = [color.strip() for color in self.colors_list]
-        self.colors_list = list(set(self.colors_list))
+        self.product_colors = self.common_preprocess(self.product_colors)
+        self.product_colors = [color.replace('farbe', '') for color in self.product_colors]
 
     def preprocess_models(self):
-        #self.models_list = [model.lower() for model in self.models_list]
 
-        # Descending order based on the number of words in model
-        #self.models_list.sort(key=lambda model: len(model.split()), reverse=True)
-        pass
+        # Descending order the models for a given brand based on the number of words the model has
+        # This will avoid to wrongly match the model as 'Liquid Z6' when it is 'Liquid Z6 Plus',
+        # as the models list is inspected sequentially (longer models are matched first)
+        for brand, models_list in self.product_models_by_brand.iteritems():
+            ordered_models_list = models_list.sort(key=lambda model: len(model.split()), reverse=True)
+            self.product_models_by_brand[brand] = ordered_models_list
 
     def tag_titles(self):
         for title in self.products_titles:
@@ -134,16 +126,42 @@ class SmartPhoneBIOTagger:
             print(self.titles_labels[-1])
             print()
 
-if __name__ == "__main__":
-    bio_tagger = SmartPhoneBIOTagger()
 
-    print(bio_tagger.models_by_brand);
+def get_models_by_brand(df, brands):
+    models_by_brand = {}
+
+    for brand in brands:
+        brand = brand.lower()
+        current_brand_models_list = df[df['brand'].str.lower() == brand]['model'].astype(str).values.tolist()
+        current_brand_models_list = [x.lower() for x in current_brand_models_list]
+        models_by_brand[brand] = current_brand_models_list
+
+    return models_by_brand
+
+
+if __name__ == "__main__":
+
+    SMARTPHONES_FINAL_DATASET_PATH = "../../RawData/DataFinal/SmartphonesProductDataFinal.csv"
+    SMARTPHONES_GSMARENA_DATASET_PATH = "../../RawData/GSMArenaPhoneDataset/phone_dataset.csv"
+
+    # Get data
+    final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH, nrows=1000)
+    structured_product_data = pd.read_csv(SMARTPHONES_GSMARENA_DATASET_PATH)
+
+    product_titles = final_product_data['Name'].astype(str).values.tolist()
+    product_colors = final_product_data['Color'].astype(str).values.tolist()
+
+    product_brands = structured_product_data['brand'].astype(str).values.tolist()
+    product_models_by_brand = get_models_by_brand(structured_product_data, product_brands)
+
+    # Start BIO encoding
+    bio_tagger = SmartPhoneBIOTagger(product_titles, product_colors, product_brands, product_models_by_brand)
+
+    print(bio_tagger.product_colors)
+    print(bio_tagger.product_models_by_brand)
 
     start_time = time.time()
-    #bio_tagger.tag_titles()
+    # bio_tagger.tag_titles()
     elapsed_time = time.time() - start_time
 
     print("Elapsed time of BIO Encoding: {}".format(elapsed_time))
-
-    #print(bio_tagger.titles_features[0])
-    #print(bio_tagger.titles_labels[0])
