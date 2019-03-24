@@ -1,6 +1,7 @@
 import pandas as pd
 import time
 import re
+import os
 
 
 class SmartPhoneBIOTagger:
@@ -146,9 +147,16 @@ class SmartPhoneBIOTagger:
             self.title_features.append(title_features)
             self.title_labels.append(title_labels)
 
-            print(self.title_features[-1])
-            print(self.title_labels[-1])
-            print()
+    def export_encoding_to_file(self, file_path):
+
+        if len(self.title_features) == len(self.title_labels):
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+            with open(file_path, 'w+') as f:
+                    for i in range(0, len(self.title_features)):
+                        f.write(str(self.title_features[i]) + "\n")
+                        f.write(str(self.title_labels[i]) + "\n")
+        else:
+            raise ValueError("Features and labels lists do not have the same length")
 
 
 def get_models_by_brand(df, brands):
@@ -166,6 +174,8 @@ if __name__ == "__main__":
 
     SMARTPHONES_FINAL_DATASET_PATH = "../../RawData/DataFinal/SmartphonesProductDataFinal.csv"
     SMARTPHONES_GSMARENA_DATASET_PATH = "../../RawData/GSMArenaPhoneDataset/phone_dataset.csv"
+
+    ENCODED_TITLES_OUTPUT_FILE_PATH = "./out/encoded_titles.txt"
 
     # Get data
     final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH, nrows=100)
@@ -188,7 +198,8 @@ if __name__ == "__main__":
     elapsed_time = time.time() - start_time
 
     print("BIO encoded finished. Elapsed time: {}".format(elapsed_time))
+    print("Exporting results to {}".format(ENCODED_TITLES_OUTPUT_FILE_PATH))
 
+    bio_tagger.export_encoding_to_file(ENCODED_TITLES_OUTPUT_FILE_PATH)
 
-    print(bio_tagger.title_contains_model("ksd asnd liquid z6 Plus akjdasad", "liquid z6 plus"))
-    print(bio_tagger.product_models_by_brand)
+    print("BIO encoding exported to file.")
