@@ -16,7 +16,7 @@ class SmartPhoneBIOTagger:
         self.product_titles = titles
         self.product_colors = colors
         self.product_brands = brands
-        self.models = models
+        self.product_models = models
         self.product_models_by_brand = models_by_brand
 
         # Clean textual data
@@ -26,7 +26,10 @@ class SmartPhoneBIOTagger:
         self.preprocess_models()
         self.preprocess_models_by_brand()
 
-    def common_preprocess(self, attr_list):
+        #
+        self.n_last_exported_rows = 0
+
+    def common_preprocess(self, attr_list, with_rows_removal=True):
         # Lowercase words
         attr_list = [x.lower() for x in attr_list]
 
@@ -34,10 +37,12 @@ class SmartPhoneBIOTagger:
         attr_list = [re.sub(r'[^\w\s]', '', x) for x in attr_list]
 
         # Remove NULL values
-        attr_list = [x for x in attr_list if str(x) != 'nan']
+        if with_rows_removal:
+            attr_list = [x for x in attr_list if str(x) != 'nan']
 
         # Remove duplicates
-        attr_list = list(set(attr_list))
+        if with_rows_removal:
+            attr_list = list(set(attr_list))
 
         # Trim surrounding spaces
         attr_list = [x.strip() for x in attr_list]
@@ -48,7 +53,7 @@ class SmartPhoneBIOTagger:
         return attr_list
 
     def preprocess_titles(self):
-        self.product_titles = self.common_preprocess(self.product_titles)
+        self.product_titles = self.common_preprocess(self.product_titles, with_rows_removal=False)
 
     def preprocess_brands(self):
         self.product_brands = self.common_preprocess(self.product_brands)
@@ -58,7 +63,7 @@ class SmartPhoneBIOTagger:
         self.product_colors = [color.replace('farbe', '') for color in self.product_colors]
 
     def preprocess_models(self):
-        self.models.sort(key=lambda model: len(model.split()), reverse=True)
+        self.product_models.sort(key=lambda model: len(model.split()), reverse=True)
 
     def preprocess_models_by_brand(self):
 
@@ -142,7 +147,7 @@ class SmartPhoneBIOTagger:
                     models_set = self.product_models_by_brand[found_brand]
 
             if len(models_set) == 0:
-                models_set = self.models
+                models_set = self.product_models
 
             for model in models_set:
                 if self.title_contains_model(title, model):
@@ -160,7 +165,17 @@ class SmartPhoneBIOTagger:
             self.title_features.append(title_features)
             self.title_labels.append(title_labels)
 
+    def print_summary(self):
+        n_models_grouped_by_brand = sum([len(x) for x in self.product_models_by_brand.values()])
+
+        print("Number of titles: {}".format(len(self.product_titles)))
+        print("Number of brands: {}".format(len(self.product_brands)))
+        print("Number of models: {}".format(len(self.product_models)))
+        print("Number of colors: {}".format(len(self.product_colors)))
+        print("Number of models grouped by brand: {}".format(n_models_grouped_by_brand))
+
     def export_encoding_to_file(self, file_path):
+        self.n_last_exported_rows = 0
 
         if len(self.title_features) == len(self.title_labels):
             os.makedirs(os.path.dirname(file_path), exist_ok=True)
@@ -168,6 +183,7 @@ class SmartPhoneBIOTagger:
                     for i in range(0, len(self.title_features)):
                         f.write(str(self.title_features[i]) + ";")
                         f.write(str(self.title_labels[i]) + "\n")
+                        self.n_last_exported_rows += 1
         else:
             raise ValueError("Features and labels lists do not have the same length")
 
@@ -185,15 +201,21 @@ def get_models_by_brand(df, brands):
 
 if __name__ == "__main__":
 
-    SMARTPHONES_FINAL_DATASET_PATH = "../../RawData/DataFinal/SmartphonesProductDataFinal.csv"
-    SMARTPHONES_GSMARENA_DATASET_PATH = "../../RawData/GSMArenaPhoneDataset/phone_dataset.csv"
+    SMARTPHONES_FINAL_DATASET_PATH = '../../RawData/DataFinal/SmartphonesProductDataFinal.csv'
+    SMARTPHONES_GSMARENA_DATASET_PATH = '../../RawData/GSMArenaPhoneDataset/phone_dataset.csv'
+
+    SMARTPHONES_FINAL_DATASET_COLS = ['Name', 'Color']
+    SMARTPHONES_GSMARENA_DATASET_COLS = ['brand', 'model']
 
     ENCODED_TITLES_OUTPUT_FILE_PATH = "./out/encoded_titles.txt"
 
     # Get data
-    final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH, nrows=50000, low_memory=False)
-    structured_product_data = pd.read_csv(SMARTPHONES_GSMARENA_DATASET_PATH)
+    final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH,
+                                     nrows=50000, usecols=SMARTPHONES_FINAL_DATASET_COLS)
+    structured_product_data = pd.read_csv(SMARTPHONES_GSMARENA_DATASET_PATH,
+                                          usecols=SMARTPHONES_GSMARENA_DATASET_COLS)
 
+    # Filter read data
     product_titles = final_product_data['Name'].astype(str).values.tolist()
     product_colors = final_product_data['Color'].astype(str).values.tolist()
 
@@ -206,7 +228,12 @@ if __name__ == "__main__":
                                      product_colors, product_brands, product_models, product_models_by_brand)
 
     print("BIOTagger object created.")
-    print("Starting BIO encoding...")
+    print("\nBIOTagger collected data summary")
+    print("================================")
+
+    bio_tagger.print_summary()
+
+    print("\nStarting BIO encoding...")
 
     start_time = time.time()
     bio_tagger.tag_titles()
@@ -217,4 +244,4 @@ if __name__ == "__main__":
 
     bio_tagger.export_encoding_to_file(ENCODED_TITLES_OUTPUT_FILE_PATH)
 
-    print("BIO encoding exported to file.")
+    print("BIO encoding exported to file. Number of exported rows: {}".format(bio_tagger.n_last_exported_rows))
