@@ -1,7 +1,10 @@
 import pycrfsuite
+import time
 import re
 
-BIO_ENCODED_PRODUCT_TITLES_FILE = "./out/encoded_titles.txt"
+BIO_ENCODED_PRODUCT_TITLES_FILE = './out/encoded_titles.txt'
+CRF_MODEL_OUTPUT_FILE = './out/crf.model'
+VERBOSE_MODE = True
 
 
 def get_training_set_from_file(file_path):
@@ -34,11 +37,12 @@ def get_training_set_from_file(file_path):
 
 training_set = get_training_set_from_file(BIO_ENCODED_PRODUCT_TITLES_FILE)
 
-trainer = pycrfsuite.Trainer(verbose=True)
+if VERBOSE_MODE:
+    print("Number of rows in training data set: {}".format(len(training_set)))
+
+trainer = pycrfsuite.Trainer(verbose=VERBOSE_MODE)
 
 for encoded_title in training_set:
-    print(encoded_title[0])
-    print(encoded_title[1])
     trainer.append(encoded_title[0], encoded_title[1])
 
 trainer.set_params({
@@ -48,4 +52,9 @@ trainer.set_params({
     'feature.possible_transitions': True
 })
 
-trainer.train('crf.model')
+start_time = time.time()
+trainer.train(CRF_MODEL_OUTPUT_FILE)
+elapsed_time = round(time.time() - start_time, 3)
+
+if VERBOSE_MODE:
+    print("CRF model training finished. Elapsed time (s): {}".format(elapsed_time))

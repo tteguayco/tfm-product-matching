@@ -1,5 +1,6 @@
 import pandas as pd
 import time
+import utils
 import re
 import os
 
@@ -29,37 +30,14 @@ class SmartPhoneBIOTagger:
         #
         self.n_last_exported_rows = 0
 
-    def common_preprocess(self, attr_list, with_rows_removal=True):
-        # Lowercase words
-        attr_list = [x.lower() for x in attr_list]
-
-        # Remove punctuation
-        attr_list = [re.sub(r'[^\w\s]', '', x) for x in attr_list]
-
-        # Remove NULL values
-        if with_rows_removal:
-            attr_list = [x for x in attr_list if str(x) != 'nan']
-
-        # Remove duplicates
-        if with_rows_removal:
-            attr_list = list(set(attr_list))
-
-        # Trim surrounding spaces
-        attr_list = [x.strip() for x in attr_list]
-
-        # Remove sequential spaces
-        attr_list = [re.sub(r'\s{2,}', ' ', x) for x in attr_list]
-
-        return attr_list
-
     def preprocess_titles(self):
-        self.product_titles = self.common_preprocess(self.product_titles, with_rows_removal=False)
+        self.product_titles = utils.preprocess(self.product_titles, with_rows_removal=False)
 
     def preprocess_brands(self):
-        self.product_brands = self.common_preprocess(self.product_brands)
+        self.product_brands = utils.preprocess(self.product_brands)
 
     def preprocess_colors(self):
-        self.product_colors = self.common_preprocess(self.product_colors)
+        self.product_colors = utils.preprocess(self.product_colors)
         self.product_colors = [color.replace('farbe', '') for color in self.product_colors]
 
     def preprocess_models(self):

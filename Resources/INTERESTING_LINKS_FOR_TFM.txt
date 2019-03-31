@@ -39,3 +39,11 @@ Practical attribute extraction
 http://www.stokastik.in/attribute-extraction-from-e-commerce-product-description/
 http://www.stokastik.in/bilstm-crf-sequence-tagging-for-e-commerce-attribute-extraction/
 https://github.com/scrapinghub/python-crfsuite/blob/master/examples/CoNLL%202002.ipynb
+
+
+
+
+
+Digital cameras database
+========================
+https://www.digicamdb.com/
