@@ -47,3 +47,11 @@ https://github.com/scrapinghub/python-crfsuite/blob/master/examples/CoNLL%202002
 Digital cameras database
 ========================
 https://www.digicamdb.com/
+
+
+TAREAS
+======
+- CRF model for smartphones and prediction of the ProdanetID for the product. Use 2 models for prediction (e.g. XGBoost and Neural Networks)
+- The same for digital cameras, using the structured data in https://www.digicamdb.com/
+- TFIDF with some other type of product
+- Small app the allows to search for a product based on its title, and display the best fit looking up in ProductsBasic (and displaying probabilities)
