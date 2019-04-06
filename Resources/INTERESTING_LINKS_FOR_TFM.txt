@@ -41,6 +41,11 @@ http://www.stokastik.in/bilstm-crf-sequence-tagging-for-e-commerce-attribute-ext
 https://github.com/scrapinghub/python-crfsuite/blob/master/examples/CoNLL%202002.ipynb
 
 
+CRF en sklearn!!!!
+==================
+https://towardsdatascience.com/named-entity-recognition-and-classification-with-scikit-learn-f05372f07ba2
+
+
 
 
 
