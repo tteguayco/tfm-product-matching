@@ -16,20 +16,6 @@ ML model persistance
 --------------------
 https://scikit-learn.org/stable/modules/model_persistence.html
 
-State of the art
-================	
-https://itelligent.es/es/product-matching/
-https://www.semantics3.com/blog/product-matching-you-ve-not-heard-of-it-but-its-powering-your-price-comparison-engine-5a940b1a4a52/
-
-
-Köpcke, H., Thor, A., Thomas, S., Rahm, E. Tailoring entity resolution for matching product offers.(2012) ACM International Conference Proceeding Series.
-
-Kannan, A., Givoni, I.E., Agrawal, R., Fuxman, A. Matching unstructured product offers to structured product specifications. (2011) Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.
-
-String similarity
-Thor, A. Toward an adaptive string similarity measure for matching product offers. (2010) INFORMATIK 2010 
-
-
 Conditional Random Fields explanation
 =====================================
 http://blog.echen.me/2012/01/03/introduction-to-conditional-random-fields/
@@ -60,3 +46,63 @@ TAREAS
 - The same for digital cameras, using the structured data in https://www.digicamdb.com/
 - TFIDF with some other type of product
 - Small app the allows to search for a product based on its title, and display the best fit looking up in ProductsBasic (and displaying probabilities)
+
+
+
+
+
+
+
+
+
+
+
+
+State of the art
+================	
+https://itelligent.es/es/product-matching/
+https://www.semantics3.com/blog/product-matching-you-ve-not-heard-of-it-but-its-powering-your-price-comparison-engine-5a940b1a4a52/
+
+
+
+PRODUCT MATCHING
+================
+* Köpcke, H., Thor, A., Thomas, S., Rahm, E. Tailoring entity resolution for matching product offers.(2012) ACM International Conference Proceeding Series.
+
+* Kannan, A., Givoni, I.E., Agrawal, R., Fuxman, A. Matching unstructured product offers to structured product specifications. (2011) Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.
+
+
+WORD REPRESENTATATION REFERENCES
+================================
+*  Mikolov, T., Sutskever, I., Chen, K., Corrado, G.S., Dean, J.: Distributed
+representations of words and phrases and their compositionality. In: Advances in neural information processing systems. pp. 3111–3119 (2013)
+* Pennington, J., Socher, R., Manning, C.D.: Glove: Global vectors for
+word representation. In: EMNLP. vol. 14, pp. 1532–1543 (2014)
+
+
+-> String comparison for name-matching tasks
+* W. W. Cohen, P. D. Ravikumar, and S. E. Fienberg.
+A comparison of string distance metrics for
+name-matching tasks. In IIWeb, 2003.
+
+LEARNING REGULAR EXPRESSIONS REFERENCES
+=======================================
+No obstante, puede resultar interesante introducir el aprendizaje de expresiones regular bla bla bla
+* Petrovski, P., Bryl, V., Bizer, C.: Learning regular expressions for the
+extraction of product attributes from e-commerce microdata (2014)
+* Borge Svingen. Learning regular languages using genetic programming. In Genetic
+Programming 1998: Proceedings of the Third Annual Conference, pages 374–376.
+Morgan Kaufmann, 1998.
+* Alberto Bartoli, Giorgio Davanzo, Andrea De Lorenzo, Marco Mauri, Eric Medvet,
+and Enrico Sorio. Automatic generation of regular expressions from examples with
+genetic programming. In Proceedings of the 14th Annual Conference Companion
+on Genetic and Evolutionary Computation, GECCO ’12, pages 1477–1478, 2012
+
+RECORD DEDUPLICATION REFERENCES
+===============================
+* Moises G. de Carvalho, Alberto H. F. Laender, Marcos Andre Goncalves, and
+Altigran Soares da Silva. A genetic programming approach to record deduplication.
+IEEE Trans. Knowl. Data Eng., 24(3):399–412, 2012.
+* A. K. Elmagarmid, P. G. Ipeirotis, and V. S. Verykios.
+Duplicate record detection: A survey. IEEE Trans.
+Knowl. Data Eng., 19(1), 2007.
