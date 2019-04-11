@@ -71,6 +71,11 @@ PRODUCT MATCHING
 
 * Kannan, A., Givoni, I.E., Agrawal, R., Fuxman, A. Matching unstructured product offers to structured product specifications. (2011) Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining.
 
+ATTRIBUTE EXTRACTION FROM TITLES
+================================
+* Matching Unstructured Product Offers to Structured
+Product Specifications
+
 
 WORD REPRESENTATATION REFERENCES
 ================================
