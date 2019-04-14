@@ -52,7 +52,8 @@ class BIOTagger:
         # This will avoid to wrongly match the model as 'Liquid Z6' when it is 'Liquid Z6 Plus',
         # as the models list is inspected sequentially (longer models are matched first)
         for brand, models_list in self.product_models_by_brand.items():
-            models_list.sort(key=lambda model: len(model.split()), reverse=True)
+            models_list.sort(key=lambda model: len(
+                model.split()), reverse=True)
 
     def title_contains_model(self, title, model):
 
@@ -157,19 +158,32 @@ class BIOTagger:
         print("Number of models grouped by brand: {}".format(
             n_models_grouped_by_brand))
 
-    def export_encoding_to_file(self, file_path):
+    def export_encoding(self, file_path):
         self.n_last_exported_rows = 0
 
         if len(self.title_features) == len(self.title_labels):
+            
+            # Create output file
             os.makedirs(os.path.dirname(file_path), exist_ok=True)
+            
+            # Write data
             with open(file_path, 'w+') as f:
+                
+                # Column headers
+                f.write("TitleNumber,")
+                f.write("Word,")
+                f.write("BIOTag\n")
+
+                # Encoded words
                 for i in range(0, len(self.title_features)):
-                    f.write(str(self.title_features[i]) + ";")
-                    f.write(str(self.title_labels[i]) + "\n")
+                    for j in range(0, len(self.title_features[i])):
+                        f.write(str(i + 1) + ",")
+                        f.write(self.title_features[i][j] + ",")
+                        f.write(self.title_labels[i][j] + "\n")
+
                     self.n_last_exported_rows += 1
         else:
-            raise ValueError(
-                "Features and labels lists do not have the same length")
+            raise ValueError( "Features and labels lists do not have the same length")
 
 
 def get_models_by_brand(df, brands):
@@ -187,27 +201,29 @@ def get_models_by_brand(df, brands):
 
 if __name__ == "__main__":
 
-    SMARTPHONES_FINAL_DATASET_PATH = '../../RawData/DataFinal/SmartphonesProductDataFinal.csv'
-    SMARTPHONES_GSMARENA_DATASET_PATH = '../../RawData/GSMArenaPhoneDataset/phone_dataset.csv'
+    SMARTPHONES_DATASET_FILEPATH = "../../data/Smartphones.csv"
+    SMARTPHONES_DETAILS_DATASET_FILEPATH = "../../data/phone_dataset.csv"
 
-    SMARTPHONES_FINAL_DATASET_COLS = ['Name', 'Color']
-    SMARTPHONES_GSMARENA_DATASET_COLS = ['brand', 'model']
+    SMARTPHONES_DATASET_COLS = ['Name', 'Color']
+    SMARTPHONES_DETAILS_DATASET_COLS = ['brand', 'model']
 
-    ENCODED_TITLES_OUTPUT_FILE_PATH = "./out/encoded_titles.txt"
+    BIO_ENCODED_TITLES_FILEPATH = "./out/data/bio_titles.csv"
 
     # Get data
-    final_product_data = pd.read_csv(SMARTPHONES_FINAL_DATASET_PATH,
-                                     nrows=50000, usecols=SMARTPHONES_FINAL_DATASET_COLS)
-    structured_product_data = pd.read_csv(SMARTPHONES_GSMARENA_DATASET_PATH,
-                                          usecols=SMARTPHONES_GSMARENA_DATASET_COLS)
+    product_data = pd.read_csv(SMARTPHONES_DATASET_FILEPATH,
+                                     nrows=50000,
+                                     usecols=SMARTPHONES_DATASET_COLS)
+    detailed_product_data = pd.read_csv(SMARTPHONES_DETAILS_DATASET_FILEPATH,
+                                          usecols=SMARTPHONES_DETAILS_DATASET_COLS)
 
     # Filter read data
-    product_titles = final_product_data['Name'].astype(str).values.tolist()
-    product_colors = final_product_data['Color'].astype(str).values.tolist()
+    product_titles = product_data['Name'].astype(str).values.tolist()
+    product_colors = product_data['Color'].astype(str).values.tolist()
 
-    product_brands = structured_product_data['brand'].astype(str).values.tolist()
-    product_models = structured_product_data['model'].astype(str).values.tolist()
-    product_models_by_brand = get_models_by_brand(structured_product_data, product_brands)
+    product_brands = detailed_product_data['brand'].astype(str).values.tolist()
+    product_models = detailed_product_data['model'].astype(str).values.tolist()
+    product_models_by_brand = get_models_by_brand(detailed_product_data, 
+                                                  product_brands)
 
     # Start BIO encoding
     bio_tagger = BIOTagger(product_titles,
@@ -226,9 +242,9 @@ if __name__ == "__main__":
     elapsed_time = round(time.time() - start_time, 3)
 
     print("BIO encoded finished. Elapsed time (s): {}".format(elapsed_time))
-    print("Exporting results to {}".format(ENCODED_TITLES_OUTPUT_FILE_PATH))
+    print("Exporting results to {}".format(BIO_ENCODED_TITLES_FILEPATH))
 
-    bio_tagger.export_encoding_to_file(ENCODED_TITLES_OUTPUT_FILE_PATH)
+    bio_tagger.export_encoding(BIO_ENCODED_TITLES_FILEPATH)
 
     print("BIO encoding exported to file. Number of exported rows: {}".format(
         bio_tagger.n_last_exported_rows))

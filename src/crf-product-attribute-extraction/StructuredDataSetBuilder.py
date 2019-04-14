@@ -1,26 +1,28 @@
-import utils
 import pandas as pd
-import pycrfsuite
 import time
 import os
 
+from joblib import load
+import sklearn_crfsuite
+import utils
 
-class StructuredDataSetBuilder:
 
-    def __init__(self, crf_model_path, titles, prices, matching_codes, limit=0):
-        self.tagger = pycrfsuite.Tagger()
-        self.tagger.open(crf_model_path)
+class StructuredDatasetBuilder:
 
+    def __init__(self, crf_model_path, titles, prices, currencies, matching_codes, limit=0):
+        # CRF Model
+        self.crf = load(crf_model_path)
+
+        # Already existing product data attributes
         self.titles = titles
         self.prices = prices
+        self.currencies = currencies
         self.matching_codes = matching_codes
 
         self.products_limit = limit
         self.structured_data_set = None
 
         self.preprocess_titles()
-        self.preprocess_prices()
-        self.preprocess_matching_codes()
 
         if len(self.titles) != len(self.prices) or len(self.titles) != len(self.matching_codes):
             raise ValueError("Provided lists of titles, prices and matching codes do not have the same length")
@@ -28,44 +30,44 @@ class StructuredDataSetBuilder:
     def preprocess_titles(self):
         self.titles = utils.preprocess(self.titles, with_rows_removal=False)
 
-    def preprocess_prices(self):
-        pass
-
-    def preprocess_matching_codes(self):
-        pass
-
     def start(self):
-
-        col_names = ['Brand', 'Model', 'Price', 'MatchingCode', 'OriginalTitle']
+        col_names = ["Title", "Brand", "Model", "Price", "Currency", "Color", "MatchingCode"]
         self.structured_data_set = pd.DataFrame(columns=col_names)
         titles_to_process = self.titles[:self.products_limit] if self.products_limit > 0 else self.titles
 
         for i, title in enumerate(titles_to_process):
             splitted_title = title.split()
-            title_labels = self.tagger.tag(splitted_title)
+            title_labels = self.crf.predict([splitted_title])[0]
 
-            brand = ''
-            model = ''
+            brand = ""
+            model = ""
+            color = ""
 
             if len(splitted_title) == len(title_labels):
                 for j, label in enumerate(title_labels):
-                    if '-BRAND' in label:
-                        brand += splitted_title[j] + ' '
-                    elif '-MODEL' in label:
-                        model += splitted_title[j] + ' '
+                    if "-BRAND" in label:
+                        brand += splitted_title[j] + " "
+                    elif "-MODEL" in label:
+                        model += splitted_title[j] + " "
+                    elif "-COLOR" in label:
+                        color += splitted_title[j] + " "
 
             brand = brand.strip()
             model = model.strip()
+            color = color.strip()
             price = self.prices[i]
+            currency = self.currencies[i]
             matching_code = self.matching_codes[i]
 
-            # Add instance to the data set
+            # Add instance to the dataset
             self.structured_data_set.loc[len(self.structured_data_set)] = [
+                title,
                 brand,
                 model,
                 price,
-                matching_code,
-                title]
+                currency,
+                color,
+                matching_code,]
 
     def print_builder_summary(self):
         print("  - Number of titles: {}".format(len(self.titles)))
@@ -88,40 +90,43 @@ class StructuredDataSetBuilder:
 
 if __name__ == '__main__':
 
-    FINAL_DATA_SET_PATH = '../../RawData/DataFinal/SmartphonesProductDataFinal.csv'
-    FINAL_DATA_SET_COLS = ['Name', 'Price', 'Currency', 'MatchingID']
-    TRAINED_CRF_MODEL_PATH = './out/crf.model'
-    STRUCTURED_DATA_SET_OUTPUT_PATH = './out/StructuredSmartPhonesDataset.csv'
+    CRF_MODEL_PATHFILE = "./out/models/crf.joblib"
+    SMARTPHONES_DATASET_FILEPATH = "../../data/Smartphones.csv"
+    SMARTPHONES_DATASET_COLS = ["Name", "Price", "Currency", "Color", "MatchingID"]
+    STRUCTURED_DATASET_OUTPUT_FILEPATH = "./out/data/StructuredSmartPhonesDataset.csv"
 
-    df = pd.read_csv(FINAL_DATA_SET_PATH, usecols=FINAL_DATA_SET_COLS)
+    df = pd.read_csv(SMARTPHONES_DATASET_FILEPATH, usecols=SMARTPHONES_DATASET_COLS)
 
-    # Get products only with prices in EUROS
-    df = df.loc[df['Currency'] == 'EUR']
-
-    product_titles = df['Name'].astype(str).values.tolist()
-    product_prices = df['Price'].astype(float).values.tolist()
-    product_matching_codes = df['MatchingID'].astype(str).values.tolist()
+    product_titles = df["Name"].astype(str).values.tolist()
+    product_prices = df["Price"].astype(float).values.tolist()
+    product_currencies = df["Currency"].astype(str).values.tolist()
+    product_matching_codes = df["MatchingID"].astype(str).values.tolist()
 
     # Start structured data set building
-    structuredDataSetBuilder = StructuredDataSetBuilder(TRAINED_CRF_MODEL_PATH,
-                                                        product_titles,
-                                                        product_prices, product_matching_codes, limit=50000)
+    structuredDatasetBuilder = StructuredDatasetBuilder(crf_model_path=CRF_MODEL_PATHFILE,
+                                                        titles=product_titles,
+                                                        prices=product_prices, 
+                                                        currencies=product_currencies,
+                                                        matching_codes=product_matching_codes, 
+                                                        limit=50000)
 
     print("\nSummary:")
 
-    structuredDataSetBuilder.print_builder_summary()
+    structuredDatasetBuilder.print_builder_summary()
+
+    print("\nStarting building of structured dataset")
 
     start_time = time.time()
-    structuredDataSetBuilder.start()
+    structuredDatasetBuilder.start()
     elapsed_time = round(time.time() - start_time, 3)
 
-    print("\nStructured data set building finished. Elapsed time (s): {}".format(elapsed_time))
+    print("\nBuilding of structured dataset finished. Elapsed time (s): {}".format(elapsed_time))
     print("\nSummary:")
 
-    structuredDataSetBuilder.print_structured_data_set_summary()
+    structuredDatasetBuilder.print_structured_data_set_summary()
 
     print()
 
-    structuredDataSetBuilder.export_data_to_csv(STRUCTURED_DATA_SET_OUTPUT_PATH)
+    structuredDatasetBuilder.export_data_to_csv(STRUCTURED_DATASET_OUTPUT_FILEPATH)
 
-    print("Structured data set exported to file.")
+    print("Structured dataset exported to file.")
