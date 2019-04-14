@@ -1,0 +1,18 @@
+﻿TerritoryID,ReskeyTerritoryName,NameOfCountryISO31661,NameOfCountrySHT,DefaultCurrency,_DefaultCurrency,DefaultLanguage,LanguageName,ActiveForProducts,LastTrans,LastChangeDate,LastChangeUser,InternalComment,CountryIDold
+"AT   ",Österreich,AT,A,1,4,1,NULL,1,1,NULL,NULL,NULL,2
+"BE   ",Belgium,BE,BE,6,4,4,dutch,1,1,2011-05-11 13:11:12.330,grm,,1024
+"CH   ",Schweiz,CH,CH,15,15,1,NULL,1,1,NULL,NULL,NULL,64
+"CN   ",China,CN,CN,17,17,2048,chinese,1,1,2011-05-11 13:06:45.807,grm,,2048
+"DE   ",Deutschland,DE,D,0,4,1,deutsch,1,1,NULL,NULL,,1
+"DK   ",Denmark,DK,DK,21,21,0,,1,1,2017-02-27 10:59:12.757,adrianm,,0
+"ES   ",Spanien,ES,E,13,4,32,spanish,1,1,NULL,NULL,,32
+"FR   ",Frankreich,FR,FR,5,4,256,french,1,1,NULL,NULL,NULL,256
+"GB   ",Großbritannien,GB,GB,14,14,16,english,1,1,2012-01-13 16:57:52.620,PER,,16
+"GL   ",Global,GL,GL,1,4,1,,1,1,NULL,NULL,,0
+"GR   ",Greece,GR,GR,18,4,4096,Greek,1,1,2011-10-06 13:54:54.060,grm,,4096
+"IT   ",Italien,IT,I,3,4,8,italian,1,1,NULL,NULL,,8
+"NL   ",Niederlande,NL,NL,2,4,4,niederländisch,1,1,NULL,NULL,NULL,4
+"PL   ",Poland,PL,PL,20,20,32768,Polish,1,1,2012-07-09 12:24:20.957,AquilesR,,32768
+"PT   ",Portugal,PT,PT,13,4,16384,Portuguese,1,1,2012-02-22 14:02:37.003,AquilesR,,16384
+"SE   ",Sweden,SE,SE,16,16,512,Swedish,1,1,2011-03-22 15:55:25.867,AquilesR,,512
+"TR   ",Turkey,TR,TR,19,19,8192,Turkish,1,1,2012-02-22 14:05:20.330,AquilesR,,8192
