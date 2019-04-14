@@ -5,7 +5,7 @@ import re
 import os
 
 
-class SmartPhoneBIOTagger:
+class BIOTagger:
 
     def __init__(self, titles, colors, brands, models, models_by_brand):
 
@@ -27,21 +27,24 @@ class SmartPhoneBIOTagger:
         self.preprocess_models()
         self.preprocess_models_by_brand()
 
-        #
+        # Exportation info
         self.n_last_exported_rows = 0
 
     def preprocess_titles(self):
-        self.product_titles = utils.preprocess(self.product_titles, with_rows_removal=False)
+        self.product_titles = utils.preprocess(
+            self.product_titles, with_rows_removal=False)
 
     def preprocess_brands(self):
         self.product_brands = utils.preprocess(self.product_brands)
 
     def preprocess_colors(self):
         self.product_colors = utils.preprocess(self.product_colors)
-        self.product_colors = [color.replace('farbe', '') for color in self.product_colors]
+        self.product_colors = [color.replace(
+            'farbe', '') for color in self.product_colors]
 
     def preprocess_models(self):
-        self.product_models.sort(key=lambda model: len(model.split()), reverse=True)
+        self.product_models.sort(
+            key=lambda model: len(model.split()), reverse=True)
 
     def preprocess_models_by_brand(self):
 
@@ -144,13 +147,15 @@ class SmartPhoneBIOTagger:
             self.title_labels.append(title_labels)
 
     def print_summary(self):
-        n_models_grouped_by_brand = sum([len(x) for x in self.product_models_by_brand.values()])
+        n_models_grouped_by_brand = sum(
+            [len(x) for x in self.product_models_by_brand.values()])
 
         print("Number of titles: {}".format(len(self.product_titles)))
         print("Number of brands: {}".format(len(self.product_brands)))
         print("Number of models: {}".format(len(self.product_models)))
         print("Number of colors: {}".format(len(self.product_colors)))
-        print("Number of models grouped by brand: {}".format(n_models_grouped_by_brand))
+        print("Number of models grouped by brand: {}".format(
+            n_models_grouped_by_brand))
 
     def export_encoding_to_file(self, file_path):
         self.n_last_exported_rows = 0
@@ -158,20 +163,23 @@ class SmartPhoneBIOTagger:
         if len(self.title_features) == len(self.title_labels):
             os.makedirs(os.path.dirname(file_path), exist_ok=True)
             with open(file_path, 'w+') as f:
-                    for i in range(0, len(self.title_features)):
-                        f.write(str(self.title_features[i]) + ";")
-                        f.write(str(self.title_labels[i]) + "\n")
-                        self.n_last_exported_rows += 1
+                for i in range(0, len(self.title_features)):
+                    f.write(str(self.title_features[i]) + ";")
+                    f.write(str(self.title_labels[i]) + "\n")
+                    self.n_last_exported_rows += 1
         else:
-            raise ValueError("Features and labels lists do not have the same length")
+            raise ValueError(
+                "Features and labels lists do not have the same length")
 
 
 def get_models_by_brand(df, brands):
     models_by_brand = {}
 
     for brand in brands:
-        current_brand_models_list = df[df['brand'].str.lower() == brand.lower()]['model'].astype(str).values.tolist()
-        current_brand_models_list = [x.lower() for x in current_brand_models_list]
+        current_brand_models_list = df[df['brand'].str.lower(
+        ) == brand.lower()]['model'].astype(str).values.tolist()
+        current_brand_models_list = [x.lower()
+                                     for x in current_brand_models_list]
         models_by_brand[brand.lower()] = current_brand_models_list
 
     return models_by_brand
@@ -202,8 +210,8 @@ if __name__ == "__main__":
     product_models_by_brand = get_models_by_brand(structured_product_data, product_brands)
 
     # Start BIO encoding
-    bio_tagger = SmartPhoneBIOTagger(product_titles,
-                                     product_colors, product_brands, product_models, product_models_by_brand)
+    bio_tagger = BIOTagger(product_titles,
+                           product_colors, product_brands, product_models, product_models_by_brand)
 
     print("BIOTagger object created.")
     print("\nBIOTagger collected data summary")
@@ -222,4 +230,5 @@ if __name__ == "__main__":
 
     bio_tagger.export_encoding_to_file(ENCODED_TITLES_OUTPUT_FILE_PATH)
 
-    print("BIO encoding exported to file. Number of exported rows: {}".format(bio_tagger.n_last_exported_rows))
+    print("BIO encoding exported to file. Number of exported rows: {}".format(
+        bio_tagger.n_last_exported_rows))
