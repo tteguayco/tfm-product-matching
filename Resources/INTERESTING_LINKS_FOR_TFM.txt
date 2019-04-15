@@ -33,7 +33,10 @@ https://towardsdatascience.com/named-entity-recognition-and-classification-with-
 
 
 
-
+XGBoost
+=======
+https://www.kdnuggets.com/2017/03/simple-xgboost-tutorial-iris-dataset.html
+https://machinelearningmastery.com/xgboost-python-mini-course/
 
 Digital cameras database
 ========================
@@ -111,3 +114,16 @@ IEEE Trans. Knowl. Data Eng., 24(3):399–412, 2012.
 * A. K. Elmagarmid, P. G. Ipeirotis, and V. S. Verykios.
 Duplicate record detection: A survey. IEEE Trans.
 Knowl. Data Eng., 19(1), 2007.
+
+
+
+
+
+
+
+
+
+
+
+TK Crawler
+==========
