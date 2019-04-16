@@ -68,8 +68,6 @@ if __name__ == "__main__":
             print("Filtering camera in URL: {}".format(curated_url))
             productDetailFilter.filter_data(html, curated_url)
 
-            break
-
     productDetailFilter.dump2csv(OUTPUT_FILEPATH)
     finish_time = time.time()
     
