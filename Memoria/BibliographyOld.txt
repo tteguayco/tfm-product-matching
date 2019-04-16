@@ -1,0 +1,12 @@
+1.  Andreas Thor. (2010). Toward an adaptive string similarity measure for matching product offers. In GI Jahrestagung (1), pages 702–710.
+2.  Ajinkya More. (2016). Attribute Extraction from Product Titles in eCommerce. WalmartLabs, Sunnyvale CA.
+3.  Petar Ristoskia, Petar Petrovskia, Peter Mikab, and Heiko Paulheima. (2017). A machine learning approach for product matching and categorization. Semantic web.
+4.  Petrovski, P., Bryl, V., Bizer, C. (2014). Learning regular expressions for the extraction of product attributes from e-commerce microdata.
+5.  Svingen, B. (1998) Learning regular languages using genetic programming. In Genetic Programming 1998: Proceedings of the Third Annual Conference.
+6.  Morgan Kaufmann, M. 1998. Alberto Bartoli, Giorgio Davanzo, Andrea De Lorenzo, Marco Mauri, Eric Medvet, and Enrico Sorio. Automatic generation of regular expressions from examples with genetic programming. In Proceedings of the 14th Annual Conference Companion on Genetic and Evolutionary Computation, GECCO ’12, pages 1477–1478, 2012.
+7.  Charles Sutton, Andrew McCallum. (2012). An introduction to Conditional Random Fields. Fundations and Trends in Machine Learning. Volume 4 Issue 4, April 2012. Pages 267-373.
+8.  Mikolov, T., Sutskever, I., Chen, K., Corrado, G.S., Dean, J. (2013). Distributed representations of words and phrases and their compositionality. Advances in neural information processing systems. pp. 3111–3119.
+9.  Pennington, J., Socher, R., Manning, C.D. (2014). Glove: Global vectors for word representation. EMNLP. vol. 14, pp. 1532–1543.
+10.  Mikhail Sidorov. (2018). Attribute extraction from eCommerce product descriptions. CS229.
+11.  Gironés, J., Casas J., Minguillón, J., Caihuelas R. (2017). Minería de datos: modelos y algoritmos. Editorial UOC.
+12. Grbovic, M., Radosavljevic, V., Djuric, N., Bhamidipati, N., Savla, J., Bhagwan, V., Sharp, D. (2015) E-commerce in your inbox: Product recommendations at scale. In: Proceedings of the 21th ACM SIGKDD.
