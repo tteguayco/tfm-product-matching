@@ -31,6 +31,9 @@ CRF en sklearn!!!!
 ==================
 https://towardsdatascience.com/named-entity-recognition-and-classification-with-scikit-learn-f05372f07ba2
 
+Random Forest example in SKlearn
+================================
+https://towardsdatascience.com/random-forest-in-python-24d0893d51c0     <- explica muy bien también en qué consiste OneHotEncoding
 
 
 XGBoost
