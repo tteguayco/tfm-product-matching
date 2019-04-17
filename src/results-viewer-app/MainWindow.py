@@ -1,6 +1,7 @@
 import PyQt5.QtWidgets as qt
 from functools import partial
 import json
+import ProductTitleMatchingResultGenerator as resultGenerator
 
 WINDOW_WIDTH = 500
 WINDOW_HEIGHT = 300
@@ -9,17 +10,17 @@ WINDOW_NAME = "Find match from product offer title"
 DEFAULT_PRODUCT_TITLE = "Apple iPhone 4 8GB SIM-Free - Black"
 DEFAULT_JSON_RESULT = "{\"name\": \"Gilbert\", \"wins\": [[\"straight\", \"7♣\"], [\"one pair\", \"10♥\"]]}"
 
+productTitleMatchingResultGenerator = resultGenerator.ProductTitleMatchingResultGenerator()
 
 def displayJsonResult(productTitleBox, textAreaToDisplayResult):
     productTitle = productTitleBox.text()
-    result = "{}"
+    result = ""
 
-    # get json
-    print("Getting json for '{}'".format(productTitle))
-
-    result = json.loads(result)
+    # Get result as JSON
+    result = productTitleMatchingResultGenerator.get_matching_results(productTitle)
     parsed_result = json.dumps(result, indent=4, sort_keys=False)
 
+    # Display result
     textAreaToDisplayResult.setPlainText(parsed_result)
 
 
