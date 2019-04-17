@@ -7,6 +7,10 @@ https://stackoverflow.com/questions/18496925/how-to-parse-product-titles-unstruc
 https://blog.sicara.com/train-ner-model-with-nltk-stanford-tagger-english-french-german-6d90573a9486
 
 
+PyQt
+====
+https://build-system.fman.io/pyqt5-tutorial
+
 
 API de uso gratuito (aparentemente)
 -----------------------------------
