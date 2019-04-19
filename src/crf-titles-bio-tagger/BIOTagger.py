@@ -2,7 +2,6 @@ import pandas as pd
 import time
 import utils
 import re
-import os
 
 REGEX_RAM_GB_MEMORY = "(\d{1,3}\s{0,2}GB)\s{0,2}(?:de\s{0,2})?RAM"
 
@@ -175,9 +174,6 @@ class BIOTagger:
 
         if len(self.title_features) == len(self.title_labels):
             
-            # Create output file
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)
-            
             # Write data
             with open(file_path, 'w+') as f:
                 
@@ -186,14 +182,21 @@ class BIOTagger:
                 f.write("Word,")
                 f.write("BIOTag\n")
 
+                title_count = 0
+
                 # Encoded words
                 for i in range(0, len(self.title_features)):
-                    for j in range(0, len(self.title_features[i])):
-                        f.write(str(i + 1) + ",")
-                        f.write(self.title_features[i][j] + ",")
-                        f.write(self.title_labels[i][j] + "\n")
+
+                    # Export only if there is a B-BRAND and B-MODEL 
+                    # in the BIO-encoded title
+                    if "B-BRAND" in self.title_labels[i] and "B-MODEL" in self.title_labels[i]:
+                        title_count += 1
+                        for j in range(0, len(self.title_features[i])):
+                            f.write(str(title_count) + ",")
+                            f.write(self.title_features[i][j] + ",")
+                            f.write(self.title_labels[i][j] + "\n")
         else:
-            raise ValueError( "Features and labels lists do not have the same length")
+            raise ValueError("Features and labels lists do not have the same length")
 
 
 def get_models_by_brand(df, brands):
@@ -221,7 +224,7 @@ if __name__ == "__main__":
 
     # Get data
     product_data = pd.read_csv(SMARTPHONES_DATASET_FILEPATH,
-                                     nrows=50000,
+                                     nrows=150000,
                                      usecols=SMARTPHONES_DATASET_COLS)
     detailed_product_data = pd.read_csv(SMARTPHONES_DETAILS_DATASET_FILEPATH,
                                           usecols=SMARTPHONES_DETAILS_DATASET_COLS)
