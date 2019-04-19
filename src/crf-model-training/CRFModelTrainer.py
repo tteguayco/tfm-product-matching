@@ -22,7 +22,7 @@ def get_bio_encoded_titles(file_path):
     labels = []
     classes = []
 
-    bio_titles_df = pd.read_csv(BIO_ENCODED_PRODUCT_TITLES_PATHFILE)
+    bio_titles_df = pd.read_csv(BIO_ENCODED_PRODUCT_TITLES_PATHFILE, encoding='iso-8859-1')
     classes = bio_titles_df["BIOTag"].unique()
 
     for titleNum in bio_titles_df["TitleNumber"].unique():
