@@ -11,6 +11,10 @@ PyQt
 ====
 https://build-system.fman.io/pyqt5-tutorial
 
+Memorizing is not learning (also explanation of L1 and L2 regularization)
+==========================
+https://hackernoon.com/memorizing-is-not-learning-6-tricks-to-prevent-overfitting-in-machine-learning-820b091dc42
+
 
 API de uso gratuito (aparentemente)
 -----------------------------------
