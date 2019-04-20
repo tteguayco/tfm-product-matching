@@ -79,7 +79,7 @@ class MatchingPipeline():
 
 
 if __name__ == "__main__":
-    product_title = "apple iPhone 4 8GB SIM-Free - Black"
+    product_title = "apple iphone 4s 4g 64gb blue"
 
     matchingPipeline = MatchingPipeline()
     matchingPipeline.get_matching_result(product_title, 500.0, "EUR")
