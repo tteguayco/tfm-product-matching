@@ -37,10 +37,10 @@ class MatchingPipeline():
 
         # Collecting relevant features
         for i in range(len(prod_title)):
-            word = prod_title[i]
-            label = labels[i][2:]
+            if labels[i] != "O":
+                word = prod_title[i]
+                label = labels[i][2:]
 
-            if label != "O":
                 if label not in prod_features:
                     prod_features[label] = []
                 prod_features[label].append(word)
@@ -62,24 +62,35 @@ class MatchingPipeline():
             features["COLOR"] if "COLOR" in features else "",
         ]
         
+        # When a model is in production, unknown categorical features may appear
+        # If this is the case, the corresponding OHE will be all zeros
+        # for this unknown categorical feature
+        self.ohe.handle_unknown = "ignore"
+
         encoded_prod_features = self.ohe.transform(df)
+        
+        matching_code = self.knn.predict(encoded_prod_features)
+        matching_code_idx = np.where(self.knn.classes_ == matching_code)[0][0]
+        prob = self.knn.predict_proba(encoded_prod_features)[0][matching_code_idx]
 
-        knn_res = self.knn.predict(encoded_prod_features)
-
-        return knn_res
+        return matching_code, prob
 
     def get_matching_result(self, title, price, currency):
         prod_title, pred_labels = self.get_features_from_crf(title)
         parsed_features_from_title = self.get_parsed_product_features(prod_title, pred_labels)
+        pred_matching_code, prob = self.get_pred_matching_code(parsed_features_from_title, price, currency)
 
-        print(parsed_features_from_title)
-
-        pred_matching_code = self.get_pred_matching_code(parsed_features_from_title, price, currency)
-        print(pred_matching_code)
+        return parsed_features_from_title, pred_matching_code, prob
 
 
 if __name__ == "__main__":
-    product_title = "apple iphone 4s 4g 64gb blue"
+    product_title = "Xiaomi Redmi Note 5 64Gb Negro"
+    product_tile = product_title.lower()
 
     matchingPipeline = MatchingPipeline()
-    matchingPipeline.get_matching_result(product_title, 500.0, "EUR")
+    features, matching_code, prob = \
+        matchingPipeline.get_matching_result(product_title, 500.0, "EUR")
+
+    print(features)
+    print("MatchingCode = {}".format(str(matching_code)))
+    print("Probability = {}".format(str(prob)))
