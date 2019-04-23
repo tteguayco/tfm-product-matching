@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "C:\\Users\\tegua\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.pep8Enabled": false,
+    "python.linting.banditEnabled": true
+}

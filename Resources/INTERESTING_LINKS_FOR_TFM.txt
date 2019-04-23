@@ -7,6 +7,11 @@ https://stackoverflow.com/questions/18496925/how-to-parse-product-titles-unstruc
 https://blog.sicara.com/train-ner-model-with-nltk-stanford-tagger-english-french-german-6d90573a9486
 
 
+String similarity as percetage using Levenshtein distance
+=========================================================
+https://stackoverflow.com/questions/10405440/percentage-rank-of-matches-using-levenshtein-distance-matching
+
+
 OneHotEncoding for production
 =============================
 https://stackoverflow.com/questions/51505295/how-to-handle-one-hot-encoding-in-production-environment-when-number-of-features

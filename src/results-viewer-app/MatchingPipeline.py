@@ -84,7 +84,7 @@ class MatchingPipeline():
 
 
 if __name__ == "__main__":
-    product_title = "Xiaomi Redmi Note 5 64Gb Negro"
+    product_title = "Canon WP DC49 Black"
     product_tile = product_title.lower()
 
     matchingPipeline = MatchingPipeline()
