@@ -35,3 +35,7 @@ print("Number of cols: {}".format(df.shape[1]))
 df_join_by_matching_id = df.join(df, on="MatchingID", how="inner", lsuffix="_l", rsuffix="_r")
 
 print(df_join_by_matching_id.head())
+
+# Generate matching pairs
+
+# Generate non-matching pairs
