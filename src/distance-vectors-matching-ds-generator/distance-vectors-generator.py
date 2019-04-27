@@ -44,6 +44,8 @@ class StructuredProductFeatures():
     def __str__(self):
         return str(self.__dict__)
 
+def get_feature_val(pred_labels, label2find, index):
+    pass
 
 def get_product_features(crf_model, title, price, currency):
     product_features = StructuredProductFeatures()
@@ -53,13 +55,13 @@ def get_product_features(crf_model, title, price, currency):
     title_featured = crf_utils.title2features(splitted_title)
     title_pred_labels = crf_model.predict_single(title_featured)
 
-    b_brand_idx_list = np.where(title_pred_labels == "B-BRAND")[0]
-    i_brand_idx_list = np.where(title_pred_labels == "I-BRAND")[0]
-    b_model_idx_list = np.where(title_pred_labels == "B-MODEL")[0]
-    i_model_idx_list = np.where(title_pred_labels == "I-MODEL")[0]
-    b_ram_idx_list = np.where(title_pred_labels == "B-RAM")[0]
-    i_ram_idx_list = np.where(title_pred_labels == "I-RAM")[0]
-    b_color_idx_list = np.where(title_pred_labels == "B-COLOR")[0]
+    b_brand_idx_list = [i for i, s in enumerate(title_pred_labels) if "B-BRAND" == s]
+    i_brand_idx_list = [i for i, s in enumerate(title_pred_labels) if "I-BRAND" == s]
+    b_model_idx_list = [i for i, s in enumerate(title_pred_labels) if "B-MODEL" == s]
+    i_model_idx_list = [i for i, s in enumerate(title_pred_labels) if "I-MODEL" == s]
+    b_ram_idx_list = [i for i, s in enumerate(title_pred_labels) if "B-RAM" == s]
+    i_ram_idx_list = [i for i, s in enumerate(title_pred_labels) if "I-RAM" == s]
+    b_color_idx_list = [i for i, s in enumerate(title_pred_labels) if "B-COLOR" == s]
 
     # Feature BRAND
     product_features.brand1 = splitted_title[b_brand_idx_list[0]] if len(b_brand_idx_list) > 0 else ""
@@ -92,7 +94,7 @@ def get_product_features(crf_model, title, price, currency):
     return product_features
 
 
-def calculate_string_similarity_perc(string1, string2):
+def get_string_similarity_perc(string1, string2):
     string1 = string1.lower()
     string2 = string2.lower()
 
@@ -114,4 +116,5 @@ print("Data loaded.")
 print("Number of rows: {}".format(df.shape[0]))
 print("Number of cols: {}".format(df.shape[1]))
 
-print(get_product_features(crf_model, "Apple iPhone 4S Smartphone - Black", 128.9, "EUR"))
+# Calculate distance vectors
+dist_vectors = df.DataFrame(c)
