@@ -38,9 +38,9 @@ class StructuredProductFeatures():
         self.model2 = ""
         self.model3 = ""
         self.model4 = ""
-        self.gb_ram = ""
+        self.gb_ram = int(0)
         self.color = ""
-        self.eur_price = ""
+        self.eur_price = float(0)
 
     def __str__(self):
         return str(self.__dict__)
@@ -104,10 +104,38 @@ def get_string_similarity_perc(string1, string2):
 
     lev_distance = distance.levenshtein(string1, string2)
     bigger_len = max(len(string1), len(string2))
-    perc = (bigger_len - lev_distance) / bigger_len
+
+    try:
+        perc = (bigger_len - lev_distance) / bigger_len
+    except ZeroDivisionError:
+        perc = 0.0
 
     return round(perc, 2)
 
+
+def get_distance_vector(product1_features, product2_features):
+    if not isinstance(product1_features, StructuredProductFeatures) or \
+        not isinstance(product2_features, StructuredProductFeatures):
+        raise ValueError("Provided object are not instances of StructuredProductFeatures class")
+
+    distance_vector = []
+    attributes_list = product1_features.__dict__.keys()
+
+    for attr in attributes_list:
+        attr_product1 = getattr(product1_features, attr)
+        attr_product2 = getattr(product2_features, attr)
+
+        dist = ""
+
+        if isinstance(attr_product1, float) and isinstance(attr_product2, float):
+            dist = round(abs(attr_product1 - attr_product2), 2)
+
+        elif isinstance(attr_product1, str) and isinstance(attr_product2, str):
+            dist = get_string_similarity_perc(attr_product1, attr_product2)
+
+        distance_vector.append(dist)
+
+    return distance_vector
 
 # Load CRF model
 crf_model = joblib.load(CRF_MODEL_FILEPATH)
@@ -121,4 +149,7 @@ print("Number of rows: {}".format(df.shape[0]))
 print("Number of cols: {}".format(df.shape[1]))
 
 # Calculate distance vectors
-print(get_product_features(crf_model, "Apple iPhone 4S plus Smartphone - Black", 2123.2, "eur"))
+product1 = get_product_features(crf_model, "Apple iPhone 4S plus Smartphone - Black", 2123.2, "eur")
+product2 = get_product_features(crf_model, "Samsung Galaxy SII Android 8GB RAM - Schwarz", 3242, "eur")
+
+print(get_distance_vector(product1, product2))
