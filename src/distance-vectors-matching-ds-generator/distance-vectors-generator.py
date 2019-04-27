@@ -133,15 +133,16 @@ def get_distance_vector(product1_features, product2_features):
 
         if isinstance(attr_product1, float) and isinstance(attr_product2, float):
             dist = round(abs(attr_product1 - attr_product2), 2)
+            if math.isnan(dist) or math.isinf(dist):
+                dist = 1000000.0
 
         elif isinstance(attr_product1, str) and isinstance(attr_product2, str):
-            # Empty string is not allowed: distance with an empty string will be
-            # greatest possible
+            # Empty string is not allowed: similarity with an empty string will
+            # be the greatest possible
             if len(attr_product1) <= 0 or len(attr_product2) <= 0:
                 dist = 0.0
             else: 
                 dist = get_string_similarity_perc(attr_product1, attr_product2)
-
 
         distance_vector.append(dist)
 
