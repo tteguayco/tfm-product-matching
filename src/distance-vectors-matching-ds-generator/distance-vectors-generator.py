@@ -87,8 +87,11 @@ def get_product_features(crf_model, title, price, currency):
     b_ram = get_feature_val(splitted_title, title_pred_labels, "B-RAM", 0)
     i_ram = get_feature_val(splitted_title, title_pred_labels, "I-RAM", 0)
 
-    if "GB" in b_ram or "GB" == i_ram.strip():
-        product_features.gb_ram = float("".join(re.findall("\d+", b_ram)))
+    try:
+        if "GB" in b_ram or "GB" == i_ram.strip():
+            product_features.gb_ram = float("".join(re.findall("\d+", b_ram)))
+    except ValueError:
+        product_features.gb_ram = float("-inf")
 
     # Feature COLOR
     product_features.color = get_feature_val(splitted_title, title_pred_labels, "B-COLOR", 0)
@@ -159,7 +162,7 @@ if __name__ == "__main__":
     crf_model = joblib.load(CRF_MODEL_FILEPATH)
 
     # Load data with no duplicates
-    df = pd.read_csv(MATCHING_PRODUCT_PAIRS_FILEPATH, sep="\t", nrows=20)
+    df = pd.read_csv(MATCHING_PRODUCT_PAIRS_FILEPATH, sep="\t")
     df = df.drop_duplicates()
 
     print("Data loaded.")
@@ -180,7 +183,7 @@ if __name__ == "__main__":
         labeled_distance_vectors.append((distance_vector, match))
 
     # Export dataset to file
-    with open(MATCHING_DISTANCE_VECTORS_OUTPUT_FILEPATH, "w") as f:
+    with open(MATCHING_DISTANCE_VECTORS_OUTPUT_FILEPATH, "w", newline="") as f:
         csv_writer = csv.writer(f, delimiter=",")
 
         # Headers
