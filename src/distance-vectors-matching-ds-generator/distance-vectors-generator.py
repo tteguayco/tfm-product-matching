@@ -22,12 +22,15 @@ import distance
 import re
 import sys
 import math
+import csv
+import time
 
 sys.path.append('../common')
 import crf_utils
 
 MATCHING_PRODUCT_PAIRS_FILEPATH = "../_data/MATCHING_PRODUCTS_PAIRS.csv"
 CRF_MODEL_FILEPATH = "../_models/crf_smartphones.joblib"
+MATCHING_DISTANCE_VECTORS_OUTPUT_FILEPATH = "../_data/MATCHING_DISTANCE_VECTORS.csv"
 
 CHF_TO_EUR_FACTOR = 0.88
 
@@ -150,6 +153,8 @@ def get_distance_vector(product1_features, product2_features):
 
 if __name__ == "__main__":
 
+    start_time = time.time()
+
     # Load CRF model
     crf_model = joblib.load(CRF_MODEL_FILEPATH)
 
@@ -168,11 +173,30 @@ if __name__ == "__main__":
         product1 = get_product_features(crf_model, row["ProductTitle1"], row["ProductPrice1"], row["ProductCurrency1"])
         product2 = get_product_features(crf_model, row["ProductTitle2"], row["ProductPrice2"], row["ProductCurrency2"])
 
-        print(product1)
-        print(product2)
+        #print(product1)
+        #print(product2)
 
         distance_vector = get_distance_vector(product1, product2)
         labeled_distance_vectors.append((distance_vector, match))
 
     # Export dataset to file
-    print(labeled_distance_vectors)
+    with open(MATCHING_DISTANCE_VECTORS_OUTPUT_FILEPATH, "w") as f:
+        csv_writer = csv.writer(f, delimiter=",")
+
+        # Headers
+        headers = [attrname.upper() for attrname in list(product1.__dict__.keys())]
+        headers.append("MATCH")
+        csv_writer.writerow(headers)
+
+        # Distances and label rows
+        for v in labeled_distance_vectors:
+            distances = v[0]
+            match_label = v[1]
+            distances.append(match_label)
+            csv_writer.writerow(distances)
+
+    print("Dataset exported to {}.".format(MATCHING_DISTANCE_VECTORS_OUTPUT_FILEPATH))
+
+    finish_time = time.time()
+    elapsed_time = round(finish_time - start_time, 2)
+    print("Process finished. Took {} seconds.".format(elapsed_time))
