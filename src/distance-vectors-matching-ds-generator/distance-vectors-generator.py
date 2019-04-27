@@ -21,6 +21,7 @@ import joblib
 import distance
 import re
 import sys
+import math
 
 sys.path.append('../common')
 import crf_utils
@@ -34,19 +35,20 @@ class StructuredProductFeatures():
     def __init__(self):
         self.brand1 = ""
         self.brand2 = ""
+        self.brand3 = ""
         self.model1 = ""
         self.model2 = ""
         self.model3 = ""
         self.model4 = ""
-        self.gb_ram = int(0)
+        self.gb_ram = float("-inf")
         self.color = ""
-        self.eur_price = float(0)
+        self.eur_price = float("-inf")
 
     def __str__(self):
         return str(self.__dict__)
 
 def get_feature_val(splitted_title, pred_labels, label2find, index):
-    feature = ""
+    feature_val = ""
 
     if len(splitted_title) != len(pred_labels):
         raise ValueError("Number of words in title and labels are not the same")
@@ -54,9 +56,9 @@ def get_feature_val(splitted_title, pred_labels, label2find, index):
     indexes_list = [i for i, s in enumerate(pred_labels) if label2find.lower() == s.lower()]
     
     if len(indexes_list) > index:
-        feature = splitted_title[indexes_list[index]]
+        feature_val = splitted_title[indexes_list[index]]
 
-    return feature
+    return feature_val
     
 
 def get_product_features(crf_model, title, price, currency):
@@ -70,18 +72,20 @@ def get_product_features(crf_model, title, price, currency):
     # Feature BRAND
     product_features.brand1 = get_feature_val(splitted_title, title_pred_labels, "B-BRAND", 0)
     product_features.brand2 = get_feature_val(splitted_title, title_pred_labels, "I-BRAND", 0)
+    product_features.brand3 = get_feature_val(splitted_title, title_pred_labels, "I-BRAND", 1)
 
     # Feature MODEL
     product_features.model1 = get_feature_val(splitted_title, title_pred_labels, "B-MODEL", 0)
     product_features.model2 = get_feature_val(splitted_title, title_pred_labels, "I-MODEL", 0)
     product_features.model3 = get_feature_val(splitted_title, title_pred_labels, "I-MODEL", 1)
+    product_features.model4 = get_feature_val(splitted_title, title_pred_labels, "I-MODEL", 2)
 
     # Feature RAM
     b_ram = get_feature_val(splitted_title, title_pred_labels, "B-RAM", 0)
     i_ram = get_feature_val(splitted_title, title_pred_labels, "I-RAM", 0)
 
     if "GB" in b_ram or "GB" == i_ram.strip():
-        product_features.gb_ram = "".join(re.findall("\d+", b_ram))
+        product_features.gb_ram = float("".join(re.findall("\d+", b_ram)))
 
     # Feature COLOR
     product_features.color = get_feature_val(splitted_title, title_pred_labels, "B-COLOR", 0)
@@ -131,25 +135,43 @@ def get_distance_vector(product1_features, product2_features):
             dist = round(abs(attr_product1 - attr_product2), 2)
 
         elif isinstance(attr_product1, str) and isinstance(attr_product2, str):
-            dist = get_string_similarity_perc(attr_product1, attr_product2)
+            # Empty string is not allowed: distance with an empty string will be
+            # greatest possible
+            if len(attr_product1) <= 0 or len(attr_product2) <= 0:
+                dist = 0.0
+            else: 
+                dist = get_string_similarity_perc(attr_product1, attr_product2)
+
 
         distance_vector.append(dist)
 
     return distance_vector
 
-# Load CRF model
-crf_model = joblib.load(CRF_MODEL_FILEPATH)
+if __name__ == "__main__":
 
-# Load data with no duplicates
-df = pd.read_csv(MATCHING_PRODUCT_PAIRS_FILEPATH, sep="\t")
-df = df.drop_duplicates()
+    # Load CRF model
+    crf_model = joblib.load(CRF_MODEL_FILEPATH)
 
-print("Data loaded.")
-print("Number of rows: {}".format(df.shape[0]))
-print("Number of cols: {}".format(df.shape[1]))
+    # Load data with no duplicates
+    df = pd.read_csv(MATCHING_PRODUCT_PAIRS_FILEPATH, sep="\t", nrows=20)
+    df = df.drop_duplicates()
 
-# Calculate distance vectors
-product1 = get_product_features(crf_model, "Apple iPhone 4S plus Smartphone - Black", 2123.2, "eur")
-product2 = get_product_features(crf_model, "Samsung Galaxy SII Android 8GB RAM - Schwarz", 3242, "eur")
+    print("Data loaded.")
+    print("Number of rows: {}".format(df.shape[0]))
+    print("Number of cols: {}".format(df.shape[1]))
 
-print(get_distance_vector(product1, product2))
+    # Calculate distance vectors
+    labeled_distance_vectors = []
+    for index, row in df.iterrows():
+        match = row["Match"]
+        product1 = get_product_features(crf_model, row["ProductTitle1"], row["ProductPrice1"], row["ProductCurrency1"])
+        product2 = get_product_features(crf_model, row["ProductTitle2"], row["ProductPrice2"], row["ProductCurrency2"])
+
+        print(product1)
+        print(product2)
+
+        distance_vector = get_distance_vector(product1, product2)
+        labeled_distance_vectors.append((distance_vector, match))
+
+    # Export dataset to file
+    print(labeled_distance_vectors)
