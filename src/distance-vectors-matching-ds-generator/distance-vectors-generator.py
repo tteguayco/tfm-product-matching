@@ -37,6 +37,7 @@ class StructuredProductFeatures():
         self.model1 = ""
         self.model2 = ""
         self.model3 = ""
+        self.model4 = ""
         self.gb_ram = ""
         self.color = ""
         self.eur_price = ""
@@ -44,8 +45,19 @@ class StructuredProductFeatures():
     def __str__(self):
         return str(self.__dict__)
 
-def get_feature_val(pred_labels, label2find, index):
-    pass
+def get_feature_val(splitted_title, pred_labels, label2find, index):
+    feature = ""
+
+    if len(splitted_title) != len(pred_labels):
+        raise ValueError("Number of words in title and labels are not the same")
+
+    indexes_list = [i for i, s in enumerate(pred_labels) if label2find.lower() == s.lower()]
+    
+    if len(indexes_list) > index:
+        feature = splitted_title[indexes_list[index]]
+
+    return feature
+    
 
 def get_product_features(crf_model, title, price, currency):
     product_features = StructuredProductFeatures()
@@ -55,32 +67,24 @@ def get_product_features(crf_model, title, price, currency):
     title_featured = crf_utils.title2features(splitted_title)
     title_pred_labels = crf_model.predict_single(title_featured)
 
-    b_brand_idx_list = [i for i, s in enumerate(title_pred_labels) if "B-BRAND" == s]
-    i_brand_idx_list = [i for i, s in enumerate(title_pred_labels) if "I-BRAND" == s]
-    b_model_idx_list = [i for i, s in enumerate(title_pred_labels) if "B-MODEL" == s]
-    i_model_idx_list = [i for i, s in enumerate(title_pred_labels) if "I-MODEL" == s]
-    b_ram_idx_list = [i for i, s in enumerate(title_pred_labels) if "B-RAM" == s]
-    i_ram_idx_list = [i for i, s in enumerate(title_pred_labels) if "I-RAM" == s]
-    b_color_idx_list = [i for i, s in enumerate(title_pred_labels) if "B-COLOR" == s]
-
     # Feature BRAND
-    product_features.brand1 = splitted_title[b_brand_idx_list[0]] if len(b_brand_idx_list) > 0 else ""
-    product_features.brand2 = splitted_title[i_brand_idx_list[0]] if len(i_brand_idx_list) > 0 else ""
+    product_features.brand1 = get_feature_val(splitted_title, title_pred_labels, "B-BRAND", 0)
+    product_features.brand2 = get_feature_val(splitted_title, title_pred_labels, "I-BRAND", 0)
 
     # Feature MODEL
-    product_features.model1 = splitted_title[b_model_idx_list[0]] if len(b_model_idx_list) > 0 else ""
-    product_features.model2 = splitted_title[i_model_idx_list[0]] if len(i_model_idx_list) > 0 else ""
-    product_features.model3 = splitted_title[i_model_idx_list[1]] if len(i_model_idx_list) > 1 else ""
+    product_features.model1 = get_feature_val(splitted_title, title_pred_labels, "B-MODEL", 0)
+    product_features.model2 = get_feature_val(splitted_title, title_pred_labels, "I-MODEL", 0)
+    product_features.model3 = get_feature_val(splitted_title, title_pred_labels, "I-MODEL", 1)
 
     # Feature RAM
-    b_ram = splitted_title[b_ram_idx_list[0]] if len(b_ram_idx_list) > 0 else ""
-    i_ram = splitted_title[i_ram_idx_list[0]] if len(i_ram_idx_list) > 0 else ""
+    b_ram = get_feature_val(splitted_title, title_pred_labels, "B-RAM", 0)
+    i_ram = get_feature_val(splitted_title, title_pred_labels, "I-RAM", 0)
 
     if "GB" in b_ram or "GB" == i_ram.strip():
         product_features.gb_ram = "".join(re.findall("\d+", b_ram))
 
     # Feature COLOR
-    product_features.color = splitted_title[b_color_idx_list[0]] if len(b_color_idx_list) > 0 else ""
+    product_features.color = get_feature_val(splitted_title, title_pred_labels, "B-COLOR", 0)
 
     # Feature PRICE
     price = float(price)
@@ -117,4 +121,4 @@ print("Number of rows: {}".format(df.shape[0]))
 print("Number of cols: {}".format(df.shape[1]))
 
 # Calculate distance vectors
-dist_vectors = df.DataFrame(c)
+print(get_product_features(crf_model, "Apple iPhone 4S plus Smartphone - Black", 2123.2, "eur"))
