@@ -7,6 +7,10 @@ https://stackoverflow.com/questions/18496925/how-to-parse-product-titles-unstruc
 https://blog.sicara.com/train-ner-model-with-nltk-stanford-tagger-english-french-german-6d90573a9486
 
 
+MODEL EVALUATION (ACCURACY, RECALL, F1, CONFUSION MATRIX, ETC)
+==============================================================
+https://towardsdatascience.com/understanding-data-science-classification-metrics-in-scikit-learn-in-python-3bc336865019
+
 String similarity as percetage using Levenshtein distance
 =========================================================
 https://stackoverflow.com/questions/10405440/percentage-rank-of-matches-using-levenshtein-distance-matching
