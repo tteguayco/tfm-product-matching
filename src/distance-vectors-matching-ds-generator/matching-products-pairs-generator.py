@@ -27,6 +27,8 @@ OUTPUT_COLS_NAMES = ["ProductTitle1", "ProductTitle2", "ProductPrice1",
 
 CSV_OUTPUT_FILE_SEP = "\t"
 
+NON_MATCHING_PAIRS_GEN_ITERS = 300000
+
 # Data load
 fields = ["Brand", "Title", "Price", "Currency", "MatchingID"]
 df = pd.read_csv(INPUT_FILEPATH, usecols=fields)
@@ -65,7 +67,7 @@ print("Number of cols: {}".format(df_match.shape[1]))
 matchingIDs = list(set(df["MatchingID"].tolist()))
 no_matching_pairs = []
 
-for i in range(100000):
+for i in range(NON_MATCHING_PAIRS_GEN_ITERS):
     random_matching_id_idx_1 = random.randint(0, len(matchingIDs) - 1)
     random_matching_id_idx_2 = random.randint(0, len(matchingIDs) - 1)
 
