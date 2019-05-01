@@ -1,0 +1,325 @@
+Generated URL in level {0}: https://www.gsmarena.com/samsung-phones-9.php
+Generated URL in level {0}: https://www.gsmarena.com/apple-phones-48.php
+Generated URL in level {0}: https://www.gsmarena.com/huawei-phones-58.php
+Generated URL in level {0}: https://www.gsmarena.com/nokia-phones-1.php
+Generated URL in level {0}: https://www.gsmarena.com/sony-phones-7.php
+Generated URL in level {0}: https://www.gsmarena.com/lg-phones-20.php
+Generated URL in level {0}: https://www.gsmarena.com/htc-phones-45.php
+Generated URL in level {0}: https://www.gsmarena.com/motorola-phones-4.php
+Generated URL in level {0}: https://www.gsmarena.com/lenovo-phones-73.php
+Generated URL in level {0}: https://www.gsmarena.com/xiaomi-phones-80.php
+Generated URL in level {0}: https://www.gsmarena.com/google-phones-107.php
+Generated URL in level {0}: https://www.gsmarena.com/honor-phones-121.php
+Generated URL in level {0}: https://www.gsmarena.com/oppo-phones-82.php
+Generated URL in level {0}: https://www.gsmarena.com/realme-phones-118.php
+Generated URL in level {0}: https://www.gsmarena.com/oneplus-phones-95.php
+Generated URL in level {0}: https://www.gsmarena.com/vivo-phones-98.php
+Generated URL in level {0}: https://www.gsmarena.com/meizu-phones-74.php
+Generated URL in level {0}: https://www.gsmarena.com/blackberry-phones-36.php
+Generated URL in level {0}: https://www.gsmarena.com/asus-phones-46.php
+Generated URL in level {0}: https://www.gsmarena.com/alcatel-phones-5.php
+Generated URL in level {0}: https://www.gsmarena.com/zte-phones-62.php
+Generated URL in level {0}: https://www.gsmarena.com/microsoft-phones-64.php
+Generated URL in level {0}: https://www.gsmarena.com/vodafone-phones-53.php
+Generated URL in level {0}: https://www.gsmarena.com/energizer-phones-106.php
+Generated URL in level {0}: https://www.gsmarena.com/cat-phones-89.php
+Generated URL in level {0}: https://www.gsmarena.com/lava-phones-94.php
+Generated URL in level {0}: https://www.gsmarena.com/micromax-phones-66.php
+Generated URL in level {0}: https://www.gsmarena.com/blu-phones-67.php
+Generated URL in level {0}: https://www.gsmarena.com/acer-phones-59.php
+Generated URL in level {0}: https://www.gsmarena.com/infinix-phones-119.php
+Generated URL in level {0}: https://www.gsmarena.com/tecno-phones-120.php
+Generated URL in level {0}: https://www.gsmarena.com/wiko-phones-96.php
+Generated URL in level {0}: https://www.gsmarena.com/panasonic-phones-6.php
+Generated URL in level {0}: https://www.gsmarena.com/yu-phones-100.php
+Generated URL in level {0}: https://www.gsmarena.com/verykool-phones-70.php
+Generated URL in level {0}: https://www.gsmarena.com/plum-phones-72.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-9.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p2.php
+Getting products info from: https://www.gsmarena.com/apple-phones-48.php
+Generated URL in level {1}: https://www.gsmarena.com/apple-phones-f-48-0-p2.php
+Getting products info from: https://www.gsmarena.com/huawei-phones-58.php
+Generated URL in level {1}: https://www.gsmarena.com/huawei-phones-f-58-0-p2.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-1.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p2.php
+Getting products info from: https://www.gsmarena.com/sony-phones-7.php
+Generated URL in level {1}: https://www.gsmarena.com/sony-phones-f-7-0-p2.php
+Getting products info from: https://www.gsmarena.com/lg-phones-20.php
+Generated URL in level {1}: https://www.gsmarena.com/lg-phones-f-20-0-p2.php
+Getting products info from: https://www.gsmarena.com/htc-phones-45.php
+Generated URL in level {1}: https://www.gsmarena.com/htc-phones-f-45-0-p2.php
+Getting products info from: https://www.gsmarena.com/motorola-phones-4.php
+Generated URL in level {1}: https://www.gsmarena.com/motorola-phones-f-4-0-p2.php
+Getting products info from: https://www.gsmarena.com/lenovo-phones-73.php
+Generated URL in level {1}: https://www.gsmarena.com/lenovo-phones-f-73-0-p2.php
+Getting products info from: https://www.gsmarena.com/xiaomi-phones-80.php
+Generated URL in level {1}: https://www.gsmarena.com/xiaomi-phones-f-80-0-p2.php
+Getting products info from: https://www.gsmarena.com/google-phones-107.php
+Getting products info from: https://www.gsmarena.com/honor-phones-121.php
+Generated URL in level {1}: https://www.gsmarena.com/honor-phones-f-121-0-p2.php
+Getting products info from: https://www.gsmarena.com/oppo-phones-82.php
+Generated URL in level {1}: https://www.gsmarena.com/oppo-phones-f-82-0-p2.php
+Getting products info from: https://www.gsmarena.com/realme-phones-118.php
+Getting products info from: https://www.gsmarena.com/oneplus-phones-95.php
+Getting products info from: https://www.gsmarena.com/vivo-phones-98.php
+Generated URL in level {1}: https://www.gsmarena.com/vivo-phones-f-98-0-p2.php
+Getting products info from: https://www.gsmarena.com/meizu-phones-74.php
+Generated URL in level {1}: https://www.gsmarena.com/meizu-phones-f-74-0-p2.php
+Getting products info from: https://www.gsmarena.com/blackberry-phones-36.php
+Generated URL in level {1}: https://www.gsmarena.com/blackberry-phones-f-36-0-p2.php
+Getting products info from: https://www.gsmarena.com/asus-phones-46.php
+Generated URL in level {1}: https://www.gsmarena.com/asus-phones-f-46-0-p2.php
+Getting products info from: https://www.gsmarena.com/alcatel-phones-5.php
+Generated URL in level {1}: https://www.gsmarena.com/alcatel-phones-f-5-0-p2.php
+Getting products info from: https://www.gsmarena.com/zte-phones-62.php
+Generated URL in level {1}: https://www.gsmarena.com/zte-phones-f-62-0-p2.php
+Getting products info from: https://www.gsmarena.com/microsoft-phones-64.php
+Getting products info from: https://www.gsmarena.com/vodafone-phones-53.php
+Generated URL in level {1}: https://www.gsmarena.com/vodafone-phones-f-53-0-p2.php
+Getting products info from: https://www.gsmarena.com/energizer-phones-106.php
+Generated URL in level {1}: https://www.gsmarena.com/energizer-phones-f-106-0-p2.php
+Getting products info from: https://www.gsmarena.com/cat-phones-89.php
+Getting products info from: https://www.gsmarena.com/lava-phones-94.php
+Generated URL in level {1}: https://www.gsmarena.com/lava-phones-f-94-0-p2.php
+Getting products info from: https://www.gsmarena.com/micromax-phones-66.php
+Generated URL in level {1}: https://www.gsmarena.com/micromax-phones-f-66-0-p2.php
+Getting products info from: https://www.gsmarena.com/blu-phones-67.php
+Generated URL in level {1}: https://www.gsmarena.com/blu-phones-f-67-0-p2.php
+Getting products info from: https://www.gsmarena.com/acer-phones-59.php
+Generated URL in level {1}: https://www.gsmarena.com/acer-phones-f-59-0-p2.php
+Getting products info from: https://www.gsmarena.com/infinix-phones-119.php
+Generated URL in level {1}: https://www.gsmarena.com/infinix-phones-f-119-0-p2.php
+Getting products info from: https://www.gsmarena.com/tecno-phones-120.php
+Generated URL in level {1}: https://www.gsmarena.com/tecno-phones-f-120-0-p2.php
+Getting products info from: https://www.gsmarena.com/wiko-phones-96.php
+Generated URL in level {1}: https://www.gsmarena.com/wiko-phones-f-96-0-p2.php
+Getting products info from: https://www.gsmarena.com/panasonic-phones-6.php
+Generated URL in level {1}: https://www.gsmarena.com/panasonic-phones-f-6-0-p2.php
+Getting products info from: https://www.gsmarena.com/yu-phones-100.php
+Getting products info from: https://www.gsmarena.com/verykool-phones-70.php
+Generated URL in level {1}: https://www.gsmarena.com/verykool-phones-f-70-0-p2.php
+Getting products info from: https://www.gsmarena.com/plum-phones-72.php
+Generated URL in level {1}: https://www.gsmarena.com/plum-phones-f-72-0-p2.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p3.php
+Getting products info from: https://www.gsmarena.com/apple-phones-f-48-0-p2.php
+Getting products info from: https://www.gsmarena.com/huawei-phones-f-58-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/huawei-phones-f-58-0-p3.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p3.php
+Getting products info from: https://www.gsmarena.com/sony-phones-f-7-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/sony-phones-f-7-0-p3.php
+Getting products info from: https://www.gsmarena.com/lg-phones-f-20-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/lg-phones-f-20-0-p3.php
+Getting products info from: https://www.gsmarena.com/htc-phones-f-45-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/htc-phones-f-45-0-p3.php
+Getting products info from: https://www.gsmarena.com/motorola-phones-f-4-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/motorola-phones-f-4-0-p3.php
+Getting products info from: https://www.gsmarena.com/lenovo-phones-f-73-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/lenovo-phones-f-73-0-p3.php
+Getting products info from: https://www.gsmarena.com/xiaomi-phones-f-80-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/xiaomi-phones-f-80-0-p3.php
+Getting products info from: https://www.gsmarena.com/honor-phones-f-121-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/honor-phones-f-121-0-p3.php
+Getting products info from: https://www.gsmarena.com/oppo-phones-f-82-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/oppo-phones-f-82-0-p3.php
+Getting products info from: https://www.gsmarena.com/vivo-phones-f-98-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/vivo-phones-f-98-0-p3.php
+Getting products info from: https://www.gsmarena.com/meizu-phones-f-74-0-p2.php
+Getting products info from: https://www.gsmarena.com/blackberry-phones-f-36-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/blackberry-phones-f-36-0-p3.php
+Getting products info from: https://www.gsmarena.com/asus-phones-f-46-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/asus-phones-f-46-0-p3.php
+Getting products info from: https://www.gsmarena.com/alcatel-phones-f-5-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/alcatel-phones-f-5-0-p3.php
+Getting products info from: https://www.gsmarena.com/zte-phones-f-62-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/zte-phones-f-62-0-p3.php
+Getting products info from: https://www.gsmarena.com/vodafone-phones-f-53-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/vodafone-phones-f-53-0-p3.php
+Getting products info from: https://www.gsmarena.com/energizer-phones-f-106-0-p2.php
+Getting products info from: https://www.gsmarena.com/lava-phones-f-94-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/lava-phones-f-94-0-p3.php
+Getting products info from: https://www.gsmarena.com/micromax-phones-f-66-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/micromax-phones-f-66-0-p3.php
+Getting products info from: https://www.gsmarena.com/blu-phones-f-67-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/blu-phones-f-67-0-p3.php
+Getting products info from: https://www.gsmarena.com/acer-phones-f-59-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/acer-phones-f-59-0-p3.php
+Getting products info from: https://www.gsmarena.com/infinix-phones-f-119-0-p2.php
+Getting products info from: https://www.gsmarena.com/tecno-phones-f-120-0-p2.php
+Getting products info from: https://www.gsmarena.com/wiko-phones-f-96-0-p2.php
+Getting products info from: https://www.gsmarena.com/panasonic-phones-f-6-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/panasonic-phones-f-6-0-p3.php
+Getting products info from: https://www.gsmarena.com/verykool-phones-f-70-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/verykool-phones-f-70-0-p3.php
+Getting products info from: https://www.gsmarena.com/plum-phones-f-72-0-p2.php
+Generated URL in level {1}: https://www.gsmarena.com/plum-phones-f-72-0-p3.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p4.php
+Getting products info from: https://www.gsmarena.com/huawei-phones-f-58-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/huawei-phones-f-58-0-p4.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p4.php
+Getting products info from: https://www.gsmarena.com/sony-phones-f-7-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/sony-phones-f-7-0-p4.php
+Getting products info from: https://www.gsmarena.com/lg-phones-f-20-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/lg-phones-f-20-0-p4.php
+Getting products info from: https://www.gsmarena.com/htc-phones-f-45-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/htc-phones-f-45-0-p4.php
+Getting products info from: https://www.gsmarena.com/motorola-phones-f-4-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/motorola-phones-f-4-0-p4.php
+Getting products info from: https://www.gsmarena.com/lenovo-phones-f-73-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/lenovo-phones-f-73-0-p4.php
+Getting products info from: https://www.gsmarena.com/xiaomi-phones-f-80-0-p3.php
+Getting products info from: https://www.gsmarena.com/honor-phones-f-121-0-p3.php
+Getting products info from: https://www.gsmarena.com/oppo-phones-f-82-0-p3.php
+Getting products info from: https://www.gsmarena.com/vivo-phones-f-98-0-p3.php
+Getting products info from: https://www.gsmarena.com/blackberry-phones-f-36-0-p3.php
+Getting products info from: https://www.gsmarena.com/asus-phones-f-46-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/asus-phones-f-46-0-p4.php
+Getting products info from: https://www.gsmarena.com/alcatel-phones-f-5-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/alcatel-phones-f-5-0-p4.php
+Getting products info from: https://www.gsmarena.com/zte-phones-f-62-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/zte-phones-f-62-0-p4.php
+Getting products info from: https://www.gsmarena.com/vodafone-phones-f-53-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/vodafone-phones-f-53-0-p4.php
+Getting products info from: https://www.gsmarena.com/lava-phones-f-94-0-p3.php
+Getting products info from: https://www.gsmarena.com/micromax-phones-f-66-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/micromax-phones-f-66-0-p4.php
+Getting products info from: https://www.gsmarena.com/blu-phones-f-67-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/blu-phones-f-67-0-p4.php
+Getting products info from: https://www.gsmarena.com/acer-phones-f-59-0-p3.php
+Getting products info from: https://www.gsmarena.com/panasonic-phones-f-6-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/panasonic-phones-f-6-0-p4.php
+Getting products info from: https://www.gsmarena.com/verykool-phones-f-70-0-p3.php
+Generated URL in level {1}: https://www.gsmarena.com/verykool-phones-f-70-0-p4.php
+Getting products info from: https://www.gsmarena.com/plum-phones-f-72-0-p3.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p5.php
+Getting products info from: https://www.gsmarena.com/huawei-phones-f-58-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/huawei-phones-f-58-0-p5.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p5.php
+Getting products info from: https://www.gsmarena.com/sony-phones-f-7-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/sony-phones-f-7-0-p5.php
+Getting products info from: https://www.gsmarena.com/lg-phones-f-20-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/lg-phones-f-20-0-p5.php
+Getting products info from: https://www.gsmarena.com/htc-phones-f-45-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/htc-phones-f-45-0-p5.php
+Getting products info from: https://www.gsmarena.com/motorola-phones-f-4-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/motorola-phones-f-4-0-p5.php
+Getting products info from: https://www.gsmarena.com/lenovo-phones-f-73-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/lenovo-phones-f-73-0-p5.php
+Getting products info from: https://www.gsmarena.com/asus-phones-f-46-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/asus-phones-f-46-0-p5.php
+Getting products info from: https://www.gsmarena.com/alcatel-phones-f-5-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/alcatel-phones-f-5-0-p5.php
+Getting products info from: https://www.gsmarena.com/zte-phones-f-62-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/zte-phones-f-62-0-p5.php
+Getting products info from: https://www.gsmarena.com/vodafone-phones-f-53-0-p4.php
+Getting products info from: https://www.gsmarena.com/micromax-phones-f-66-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/micromax-phones-f-66-0-p5.php
+Getting products info from: https://www.gsmarena.com/blu-phones-f-67-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/blu-phones-f-67-0-p5.php
+Getting products info from: https://www.gsmarena.com/panasonic-phones-f-6-0-p4.php
+Generated URL in level {1}: https://www.gsmarena.com/panasonic-phones-f-6-0-p5.php
+Getting products info from: https://www.gsmarena.com/verykool-phones-f-70-0-p4.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p5.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p6.php
+Getting products info from: https://www.gsmarena.com/huawei-phones-f-58-0-p5.php
+Generated URL in level {1}: https://www.gsmarena.com/huawei-phones-f-58-0-p6.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p5.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p6.php
+Getting products info from: https://www.gsmarena.com/sony-phones-f-7-0-p5.php
+Getting products info from: https://www.gsmarena.com/lg-phones-f-20-0-p5.php
+Generated URL in level {1}: https://www.gsmarena.com/lg-phones-f-20-0-p6.php
+Getting products info from: https://www.gsmarena.com/htc-phones-f-45-0-p5.php
+Generated URL in level {1}: https://www.gsmarena.com/htc-phones-f-45-0-p6.php
+Getting products info from: https://www.gsmarena.com/motorola-phones-f-4-0-p5.php
+Generated URL in level {1}: https://www.gsmarena.com/motorola-phones-f-4-0-p6.php
+Getting products info from: https://www.gsmarena.com/lenovo-phones-f-73-0-p5.php
+Getting products info from: https://www.gsmarena.com/asus-phones-f-46-0-p5.php
+Getting products info from: https://www.gsmarena.com/alcatel-phones-f-5-0-p5.php
+Generated URL in level {1}: https://www.gsmarena.com/alcatel-phones-f-5-0-p6.php
+Getting products info from: https://www.gsmarena.com/zte-phones-f-62-0-p5.php
+Generated URL in level {1}: https://www.gsmarena.com/zte-phones-f-62-0-p6.php
+Getting products info from: https://www.gsmarena.com/micromax-phones-f-66-0-p5.php
+Generated URL in level {1}: https://www.gsmarena.com/micromax-phones-f-66-0-p6.php
+Getting products info from: https://www.gsmarena.com/blu-phones-f-67-0-p5.php
+Generated URL in level {1}: https://www.gsmarena.com/blu-phones-f-67-0-p6.php
+Getting products info from: https://www.gsmarena.com/panasonic-phones-f-6-0-p5.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p6.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p7.php
+Getting products info from: https://www.gsmarena.com/huawei-phones-f-58-0-p6.php
+Generated URL in level {1}: https://www.gsmarena.com/huawei-phones-f-58-0-p7.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p6.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p7.php
+Getting products info from: https://www.gsmarena.com/lg-phones-f-20-0-p6.php
+Generated URL in level {1}: https://www.gsmarena.com/lg-phones-f-20-0-p7.php
+Getting products info from: https://www.gsmarena.com/htc-phones-f-45-0-p6.php
+Generated URL in level {1}: https://www.gsmarena.com/htc-phones-f-45-0-p7.php
+Getting products info from: https://www.gsmarena.com/motorola-phones-f-4-0-p6.php
+Generated URL in level {1}: https://www.gsmarena.com/motorola-phones-f-4-0-p7.php
+Getting products info from: https://www.gsmarena.com/alcatel-phones-f-5-0-p6.php
+Generated URL in level {1}: https://www.gsmarena.com/alcatel-phones-f-5-0-p7.php
+Getting products info from: https://www.gsmarena.com/zte-phones-f-62-0-p6.php
+Generated URL in level {1}: https://www.gsmarena.com/zte-phones-f-62-0-p7.php
+Getting products info from: https://www.gsmarena.com/micromax-phones-f-66-0-p6.php
+Generated URL in level {1}: https://www.gsmarena.com/micromax-phones-f-66-0-p7.php
+Getting products info from: https://www.gsmarena.com/blu-phones-f-67-0-p6.php
+Generated URL in level {1}: https://www.gsmarena.com/blu-phones-f-67-0-p7.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p7.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p8.php
+Getting products info from: https://www.gsmarena.com/huawei-phones-f-58-0-p7.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p7.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p8.php
+Getting products info from: https://www.gsmarena.com/lg-phones-f-20-0-p7.php
+Generated URL in level {1}: https://www.gsmarena.com/lg-phones-f-20-0-p8.php
+Getting products info from: https://www.gsmarena.com/htc-phones-f-45-0-p7.php
+Getting products info from: https://www.gsmarena.com/motorola-phones-f-4-0-p7.php
+Generated URL in level {1}: https://www.gsmarena.com/motorola-phones-f-4-0-p8.php
+Getting products info from: https://www.gsmarena.com/alcatel-phones-f-5-0-p7.php
+Generated URL in level {1}: https://www.gsmarena.com/alcatel-phones-f-5-0-p8.php
+Getting products info from: https://www.gsmarena.com/zte-phones-f-62-0-p7.php
+Getting products info from: https://www.gsmarena.com/micromax-phones-f-66-0-p7.php
+Getting products info from: https://www.gsmarena.com/blu-phones-f-67-0-p7.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p8.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p9.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p8.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p9.php
+Getting products info from: https://www.gsmarena.com/lg-phones-f-20-0-p8.php
+Generated URL in level {1}: https://www.gsmarena.com/lg-phones-f-20-0-p9.php
+Getting products info from: https://www.gsmarena.com/motorola-phones-f-4-0-p8.php
+Generated URL in level {1}: https://www.gsmarena.com/motorola-phones-f-4-0-p9.php
+Getting products info from: https://www.gsmarena.com/alcatel-phones-f-5-0-p8.php
+Generated URL in level {1}: https://www.gsmarena.com/alcatel-phones-f-5-0-p9.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p9.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p10.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p9.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p10.php
+Getting products info from: https://www.gsmarena.com/lg-phones-f-20-0-p9.php
+Generated URL in level {1}: https://www.gsmarena.com/lg-phones-f-20-0-p10.php
+Getting products info from: https://www.gsmarena.com/motorola-phones-f-4-0-p9.php
+Generated URL in level {1}: https://www.gsmarena.com/motorola-phones-f-4-0-p10.php
+Getting products info from: https://www.gsmarena.com/alcatel-phones-f-5-0-p9.php
+Generated URL in level {1}: https://www.gsmarena.com/alcatel-phones-f-5-0-p10.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p10.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p11.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p10.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p11.php
+Getting products info from: https://www.gsmarena.com/lg-phones-f-20-0-p10.php
+Generated URL in level {1}: https://www.gsmarena.com/lg-phones-f-20-0-p11.php
+Getting products info from: https://www.gsmarena.com/motorola-phones-f-4-0-p10.php
+Getting products info from: https://www.gsmarena.com/alcatel-phones-f-5-0-p10.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p11.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p12.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p11.php
+Generated URL in level {1}: https://www.gsmarena.com/nokia-phones-f-1-0-p12.php
+Getting products info from: https://www.gsmarena.com/lg-phones-f-20-0-p11.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p12.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p13.php
+Getting products info from: https://www.gsmarena.com/nokia-phones-f-1-0-p12.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p13.php
+Generated URL in level {1}: https://www.gsmarena.com/samsung-phones-f-9-0-p14.php
+Getting products info from: https://www.gsmarena.com/samsung-phones-f-9-0-p14.php
+Products info crawled. Process took 93.718 seconds

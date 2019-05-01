@@ -1,7 +1,9 @@
 import pandas as pd
 import time
-import utils
 import re
+
+sys.path.append('../common')
+import utils
 
 REGEX_RAM_GB_MEMORY = "(\d{1,3}\s{0,2}GB)\s{0,2}(?:de\s{0,2})?RAM"
 

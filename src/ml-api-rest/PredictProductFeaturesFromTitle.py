@@ -37,7 +37,7 @@ class PredictProductFeaturesFromTitle(Resource):
                 for i, word in enumerate(splitted_title):
                     features.append((word, pred_labels[i], {"confidence": probs[i]}))
 
-            # Create JSON object for the response
+            # Return result as a JSON object
             output = {
                 "title": product_title,
                 "features": features
