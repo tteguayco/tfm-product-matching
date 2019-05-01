@@ -6,7 +6,7 @@ def preprocess(attr_list, with_rows_removal=True):
     attr_list = [x.lower() for x in attr_list]
 
     # Remove punctuation
-    attr_list = [re.sub(r'[^\w\s]', '', x) for x in attr_list]
+    attr_list = [re.sub(r'[^\w\s\+\"]', '', x) for x in attr_list]
 
     # Remove NULL values
     if with_rows_removal:
