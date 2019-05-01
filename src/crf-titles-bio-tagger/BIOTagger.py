@@ -1,6 +1,7 @@
 import pandas as pd
 import time
 import re
+import sys
 
 sys.path.append('../common')
 import utils
@@ -216,23 +217,30 @@ def get_models_by_brand(df, brands):
 
 if __name__ == "__main__":
 
-    SMARTPHONES_DATASET_FILEPATH = "../../data/Smartphones.csv"
-    SMARTPHONES_DETAILS_DATASET_FILEPATH = "../../data/phone_dataset.csv"
+    SMARTPHONES_DATASET_FILEPATH = "../_data/Smartphones_offers.csv"
+    SMARTPHONES_DETAILS_DATASET1_FILEPATH = "../_data/smartphones_kaggle.csv"
+    SMARTPHONES_DETAILS_DATASET2_FILEPATH = "../_data/SmartphonesBrandsModels.csv"
 
-    SMARTPHONES_DATASET_COLS = ['Name', 'Color']
-    SMARTPHONES_DETAILS_DATASET_COLS = ['brand', 'model']
+    SMARTPHONES_DATASET_COLS = ['Title', 'Color']
+    SMARTPHONES_DETAILS_DATASET1_COLS = ['brand', 'model']
+    SMARTPHONES_DETAILS_DATASET2_COLS = ['brand', 'model']
 
-    BIO_ENCODED_TITLES_FILEPATH = "../_data/bio_encoded_product_titles.csv"
+    BIO_ENCODED_TITLES_FILEPATH = "../_data/BIO_ENCODED_TITLES.csv"
 
     # Get data
     product_data = pd.read_csv(SMARTPHONES_DATASET_FILEPATH,
-                                     nrows=150000,
-                                     usecols=SMARTPHONES_DATASET_COLS)
-    detailed_product_data = pd.read_csv(SMARTPHONES_DETAILS_DATASET_FILEPATH,
-                                          usecols=SMARTPHONES_DETAILS_DATASET_COLS)
+                                    nrows=150000,
+                                    usecols=SMARTPHONES_DATASET_COLS)
+    detailed_product_data1 = pd.read_csv(SMARTPHONES_DETAILS_DATASET1_FILEPATH,
+                                    usecols=SMARTPHONES_DETAILS_DATASET1_COLS)
+
+    detailed_product_data2 = pd.read_csv(SMARTPHONES_DETAILS_DATASET2_FILEPATH,
+                                    usecols=SMARTPHONES_DETAILS_DATASET1_COLS)
+    
+    detailed_product_data = detailed_product_data1.append(detailed_product_data2)
 
     # Filter read data
-    product_titles = product_data['Name'].astype(str).values.tolist()
+    product_titles = product_data['Title'].astype(str).values.tolist()
     product_colors = product_data['Color'].astype(str).values.tolist()
 
     product_brands = detailed_product_data['brand'].astype(str).values.tolist()
@@ -242,7 +250,10 @@ if __name__ == "__main__":
 
     # Start BIO encoding
     bio_tagger = BIOTagger(product_titles,
-                           product_colors, product_brands, product_models, product_models_by_brand)
+                           product_colors, 
+                           product_brands, 
+                           product_models, 
+                           product_models_by_brand)
 
     print("BIOTagger object created.")
     print("\nBIOTagger collected data summary")

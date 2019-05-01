@@ -1,0 +1,13 @@
+BIOTagger object created.
+
+BIOTagger collected data summary
+================================
+Number of titles: 150000
+Number of brands: 112
+Number of models: 15074
+Number of colors: 436
+Number of models grouped by brand: 15074
+
+Starting BIO encoding...
+BIO encoded finished. Elapsed time (s): 890.61
+Exporting results to ../_data/BIO_ENCODED_TITLES.csv
