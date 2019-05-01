@@ -7,6 +7,11 @@ https://stackoverflow.com/questions/18496925/how-to-parse-product-titles-unstruc
 https://blog.sicara.com/train-ner-model-with-nltk-stanford-tagger-english-french-german-6d90573a9486
 
 
+MACHINE LEARNING TO API REST
+============================
+https://towardsdatascience.com/deploying-a-machine-learning-model-as-a-rest-api-4a03b865c166
+https://medium.com/@parthibansudhaman/how-i-have-created-and-deployed-restful-api-using-python-and-heroku-step-by-step-guide-5b9612e6a532
+
 MODEL EVALUATION (ACCURACY, RECALL, F1, CONFUSION MATRIX, ETC)
 ==============================================================
 https://towardsdatascience.com/understanding-data-science-classification-metrics-in-scikit-learn-in-python-3bc336865019
