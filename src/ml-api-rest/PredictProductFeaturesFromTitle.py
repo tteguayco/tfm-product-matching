@@ -39,7 +39,8 @@ class PredictProductFeaturesFromTitle(Resource):
 
             # Create JSON object for the response
             output = {
-                'features': features
+                "title": product_title,
+                "features": features
             }
 
         return output
