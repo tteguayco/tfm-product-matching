@@ -35,17 +35,34 @@ MATCHING_DISTANCE_VECTORS_OUTPUT_FILEPATH = "../_data/MATCHING_DISTANCE_VECTORS.
 CHF_TO_EUR_FACTOR = 0.88
 
 class StructuredProductFeatures():
+    STRING_FEATURE_DEFAULT_VAL = ""
+    FLOAT_FEATURE_DEFAULT_VAL = float("-inf")
+
     def __init__(self):
-        self.brand1 = ""
-        self.brand2 = ""
-        self.brand3 = ""
-        self.model1 = ""
-        self.model2 = ""
-        self.model3 = ""
-        self.model4 = ""
-        self.gb_ram = float("-inf")
-        self.color = ""
-        self.eur_price = float("-inf")
+        self.brand1 = StructuredProductFeatures.STRING_FEATURE_DEFAULT_VAL
+        self.brand2 = StructuredProductFeatures.STRING_FEATURE_DEFAULT_VAL
+        self.brand3 = StructuredProductFeatures.STRING_FEATURE_DEFAULT_VAL
+        self.model1 = StructuredProductFeatures.STRING_FEATURE_DEFAULT_VAL
+        self.model2 = StructuredProductFeatures.STRING_FEATURE_DEFAULT_VAL
+        self.model3 = StructuredProductFeatures.STRING_FEATURE_DEFAULT_VAL
+        self.model4 = StructuredProductFeatures.STRING_FEATURE_DEFAULT_VAL
+        self.color = StructuredProductFeatures.STRING_FEATURE_DEFAULT_VAL
+
+        self.gb_ram = StructuredProductFeatures.FLOAT_FEATURE_DEFAULT_VAL
+        self.eur_price = StructuredProductFeatures.FLOAT_FEATURE_DEFAULT_VAL
+
+    def feature_has_default_value(self, feature_name):
+        
+        if hasattr(self, feature_name):
+            feature_val = getattr(self, feature_name)
+
+            if feature_val == StructuredProductFeatures.STRING_FEATURE_DEFAULT_VAL:
+                return True
+
+            if feature_val == StructuredProductFeatures.FLOAT_FEATURE_DEFAULT_VAL:
+                return True
+
+        return False
 
     def __str__(self):
         return str(self.__dict__)
@@ -136,6 +153,7 @@ def get_distance_vector(product1_features, product2_features):
         attr_product2 = getattr(product2_features, attr)
 
         dist = ""
+        found_feature = 0
 
         if isinstance(attr_product1, float) and isinstance(attr_product2, float):
             dist = round(abs(attr_product1 - attr_product2), 2)
@@ -150,7 +168,13 @@ def get_distance_vector(product1_features, product2_features):
             else: 
                 dist = get_string_similarity_perc(attr_product1, attr_product2)
 
+        # If at least one of the product has a value for the current inspected feature
+        if not product1_features.feature_has_default_value(attr) or \
+            not product2_features.feature_has_default_value(attr):
+            found_feature = 1
+
         distance_vector.append(dist)
+        distance_vector.append(found_feature)
 
     return distance_vector
 
@@ -176,9 +200,6 @@ if __name__ == "__main__":
         product1 = get_product_features(crf_model, row["ProductTitle1"], row["ProductPrice1"], row["ProductCurrency1"])
         product2 = get_product_features(crf_model, row["ProductTitle2"], row["ProductPrice2"], row["ProductCurrency2"])
 
-        #print(product1)
-        #print(product2)
-
         distance_vector = get_distance_vector(product1, product2)
         labeled_distance_vectors.append((distance_vector, match))
 
@@ -187,7 +208,8 @@ if __name__ == "__main__":
         csv_writer = csv.writer(f, delimiter=",")
 
         # Headers
-        headers = [attrname.upper() for attrname in list(product1.__dict__.keys())]
+        headers = [[attrname.upper(), attrname.upper() + "FOUND"] for attrname in list(product1.__dict__.keys())]
+        headers = [val for sublist in headers for val in sublist]
         headers.append("MATCH")
         csv_writer.writerow(headers)
 
